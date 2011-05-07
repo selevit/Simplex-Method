@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-#include "simplex.h"
+#include "sourceData.h"
 
 int main()
 {
