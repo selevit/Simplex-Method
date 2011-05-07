@@ -14,6 +14,10 @@
 
 #include "sourceData.h"
 
+#include "basis.h"
+
+
+
 int main()
 {
 	/*
@@ -26,7 +30,8 @@ int main()
 	 */
 	setlocale(LC_ALL, "Russian");
 	SourceData * sourceData = new SourceData;
-	sourceData -> getAndSetSourceData();
-	delete sourceData;
+	sourceData->getAndSetSourceData();
+	Basis * test = new Basis;
+	test->pr();
 	return 0;
 }

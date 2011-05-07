@@ -14,9 +14,17 @@
  * Функция цели и система неравенств.
 */
 
+
 class SourceData {
 	public:
 	
+
+		void pr()
+		{
+			std::cout << numOfSourceVars << std::endl;
+		}
+
+
 		/*
 		 * Данная функция объединяет все функции
 		 * данного класса, т.е. принимает и задает
@@ -100,7 +108,8 @@ class SourceData {
 		*/
 
 		void error(int numberOfError);
-	private:
+
+//	protected:
 
 		/*
 		 * Количество исходных переменных
@@ -112,7 +121,7 @@ class SourceData {
 		/*
 		 * Коэффициенты переменных
 		 * целевой функции
-	    */
+		*/
 
 		double *  factorsOfTargetFunctionVars;
 		
