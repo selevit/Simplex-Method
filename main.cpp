@@ -12,9 +12,9 @@
 
 #include <iostream>
 
-#include "sourceData.h"
+#include "simplex.h"
 
-#include "basis.h"
+#include "sourceData.h"
 
 
 
@@ -29,9 +29,7 @@ int main()
 	 * Visual Studio 2008, я задаю русскую локаль по умолчанию.
 	 */
 	setlocale(LC_ALL, "Russian");
-	SourceData * sourceData = new SourceData;
-	sourceData->getAndSetSourceData();
-	Basis * test = new Basis;
-	test->pr();
+	Simplex * MainObject = new Simplex;
+	MainObject->getAndSetSourceData();
 	return 0;
 }

@@ -14,17 +14,12 @@
  * Функция цели и система неравенств.
 */
 
+#ifndef _SOURCE_DATA_H_
+#define _SOURCE_DATA_H_ 1
 
 class SourceData {
 	public:
 	
-
-		void pr()
-		{
-			std::cout << numOfSourceVars << std::endl;
-		}
-
-
 		/*
 		 * Данная функция объединяет все функции
 		 * данного класса, т.е. принимает и задает
@@ -109,7 +104,7 @@ class SourceData {
 
 		void error(int numberOfError);
 
-//	protected:
+	protected:
 
 		/*
 		 * Количество исходных переменных
@@ -139,3 +134,4 @@ class SourceData {
 
 		double * freeMembersOfSystem;
 };
+#endif
