@@ -1,0 +1,628 @@
+c++ Main.cpp Simplex.h Simplex.cpp InputData.cpp InputData.h -o Simplex
+Simplex.cpp:1: error: stray ‘#’ in program
+Simplex.cpp:1: error: expected unqualified-id before ‘if’
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:39,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:46: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:46: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:49: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:49: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:52: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:52: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:55: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:55: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:58: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:58: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:61: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:61: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:65: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:65: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:69: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:69: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:73: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:73: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:77: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:77: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:80: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:80: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:83: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:83: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:86: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:86: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:89: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:89: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:92: error: expected type-specifier before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:92: error: expected ‘>’ before ‘char_traits’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:127: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:127: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:128: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:128: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:129: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:129: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:130: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:130: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:131: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:131: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:132: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:132: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:133: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:133: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:134: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:134: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:135: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:135: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:136: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:136: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:137: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:137: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:138: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:138: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:139: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:139: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:142: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:142: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:143: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:143: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:144: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:144: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:145: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:145: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:146: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:146: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:147: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:147: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:148: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:148: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:149: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:149: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:150: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:150: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:151: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:151: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:152: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:152: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:153: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:153: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:154: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iosfwd:154: error: invalid type in declaration before ‘;’ token
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:42,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/localefwd.h:136: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/localefwd.h:138: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/localefwd.h:152: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/localefwd.h:154: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/localefwd.h:156: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/localefwd.h:158: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/localefwd.h:164: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/localefwd.h:166: error: template argument 2 is invalid
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/string:46,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream_insert.h:117: error: template-id ‘__ostream_insert<>’ for ‘std::ostream& std::__ostream_insert(std::ostream&, const char*, std::streamsize)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream_insert.h:120: error: template-id ‘__ostream_insert<>’ for ‘std::wostream& std::__ostream_insert(std::wostream&, const wchar_t*, std::streamsize)’ does not match any template declaration
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/string:53,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2239: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2240: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2240: error: ‘typename __gnu_cxx::__enable_if<std::__is_char::__value, bool>::__type std::operator==(const int&, const int&)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2484: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2485: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2485: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2485: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2485: error: ‘int& std::operator>>(int&, int&)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2543: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2544: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2544: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2545: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2544: error: template-id ‘getline<>’ for ‘int& std::getline(int&, int&, char)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2549: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2550: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2550: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2551: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:2550: error: template-id ‘getline<>’ for ‘int& std::getline(int&, int&, wchar_t)’ does not match any template declaration
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/string:56,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.h:42,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1134: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1136: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1137: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1137: error: ‘string’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1137: error: ‘int& std::operator>>(int&, int&)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1139: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1140: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1140: error: expected ‘,’ or ‘...’ before ‘&’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1140: error: ‘int& std::operator<<(int&, int)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1142: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1143: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1143: error: ‘string’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1143: error: template-id ‘getline<>’ for ‘int& std::getline(int&, int&, char)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1145: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1146: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1146: error: ‘string’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1146: error: template-id ‘getline<>’ for ‘int& std::getline(int&, int&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1149: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1151: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1152: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1152: error: ‘wstring’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1152: error: ‘int& std::operator>>(int&, int&)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1154: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1155: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1155: error: expected ‘,’ or ‘...’ before ‘&’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1155: error: ‘int& std::operator<<(int&, int)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1157: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1158: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1158: error: ‘wstring’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1158: error: template-id ‘getline<>’ for ‘int& std::getline(int&, int&, wchar_t)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1160: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1161: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1161: error: ‘wstring’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.tcc:1161: error: template-id ‘getline<>’ for ‘int& std::getline(int&, int&)’ does not match any template declaration
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.h:213: error: ‘string’ does not name a type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.h:611: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.h:786: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.h:809,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ios_base.h:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc: In member function ‘virtual int std::collate<_CharT>::do_compare(const _CharT*, const _CharT*, const _CharT*, const _CharT*) const’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:142: error: request for member ‘c_str’ in ‘__one’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:143: error: request for member ‘data’ in ‘__one’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:143: error: request for member ‘length’ in ‘__one’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:144: error: request for member ‘c_str’ in ‘__two’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:145: error: request for member ‘data’ in ‘__two’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:145: error: request for member ‘length’ in ‘__two’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc: In member function ‘virtual int std::collate<_CharT>::do_transform(const _CharT*, const _CharT*) const’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:180: error: request for member ‘c_str’ in ‘__str’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:181: error: request for member ‘data’ in ‘__str’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:181: error: request for member ‘length’ in ‘__str’, which is of non-class type ‘const int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:206: error: request for member ‘append’ in ‘__ret’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_classes.tcc:212: error: request for member ‘push_back’ in ‘__ret’, which is of non-class type ‘int’
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:43,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ios_base.h: At global scope:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ios_base.h:223: error: expected ‘,’ or ‘...’ before ‘&’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ios_base.h:234: error: ‘string’ does not name a type
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:44,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:147: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:148: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:152: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:152: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:153: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:153: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:154: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:784: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:785: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:784: error: template-id ‘__copy_streambufs_eof<>’ for ‘std::streamsize std::__copy_streambufs_eof(int*, int*, bool&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:789: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:790: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:789: error: template-id ‘__copy_streambufs_eof<>’ for ‘std::streamsize std::__copy_streambufs_eof(int*, int*, bool&)’ does not match any template declaration
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/streambuf:796,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:44,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:149: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:152: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:153: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:152: error: template-id ‘__copy_streambufs<>’ for ‘std::streamsize std::__copy_streambufs(int*, int*)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:156: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:157: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:156: error: template-id ‘__copy_streambufs_eof<>’ for ‘std::streamsize std::__copy_streambufs_eof(int*, int*, bool&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:160: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:163: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:164: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:163: error: template-id ‘__copy_streambufs<>’ for ‘std::streamsize std::__copy_streambufs(int*, int*)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:167: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:168: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf.tcc:167: error: template-id ‘__copy_streambufs_eof<>’ for ‘std::streamsize std::__copy_streambufs_eof(int*, int*, bool&)’ does not match any template declaration
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:50,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:45,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:62: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:62: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:63: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:63: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:64: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:64: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:69: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:70: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:74: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:74: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:75: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:75: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:76: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:214: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:214: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:215: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:215: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:216: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:216: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:275: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:275: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:276: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:277: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:278: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: In function ‘int std::copy(int, int, int)’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:280: error: request for member ‘_M_sbuf’ in ‘__first’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:280: error: request for member ‘_M_sbuf’ in ‘__last’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:280: error: request for member ‘_M_failed’ in ‘__result’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:283: error: request for member ‘_M_sbuf’ in ‘__first’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:283: error: request for member ‘_M_sbuf’ in ‘__result’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:285: error: request for member ‘_M_failed’ in ‘__result’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: At global scope:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:292: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:292: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:294: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: In function ‘int std::__copy_move_a2(_CharT*, _CharT*, int)’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:298: error: request for member ‘_M_put’ in ‘__result’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: At global scope:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:304: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:304: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:306: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: In function ‘int std::__copy_move_a2(const _CharT*, const _CharT*, int)’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:310: error: request for member ‘_M_put’ in ‘__result’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: At global scope:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:317: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:318: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: In function ‘typename __gnu_cxx::__enable_if<std::__is_char::__value, _CharT*>::__type std::__copy_move_a2(int, int, _CharT*)’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:320: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:320: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:321: error: ‘__is_iterator_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:321: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:322: error: ‘__is_iterator_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:322: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:323: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:323: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:325: error: request for member ‘_M_sbuf’ in ‘__first’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:325: error: request for member ‘_M_sbuf’ in ‘__last’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:327: error: request for member ‘_M_sbuf’ in ‘__first’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:328: error: request for member ‘sgetc’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:329: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:329: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:331: error: request for member ‘egptr’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:331: error: request for member ‘gptr’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:334: error: invalid use of qualified-name ‘::copy’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:334: error: request for member ‘gptr’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:335: error: request for member ‘gbump’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:337: error: request for member ‘underflow’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:341: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:342: error: request for member ‘snextc’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: At global scope:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:351: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:351: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:352: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:353: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h: In function ‘int std::find(int, int, const _CharT&)’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:355: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:355: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:356: error: ‘__is_iterator_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:356: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:357: error: ‘__is_iterator_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:357: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:358: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:358: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:360: error: request for member ‘_M_sbuf’ in ‘__first’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:360: error: request for member ‘_M_sbuf’ in ‘__last’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:362: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:363: error: request for member ‘_M_sbuf’ in ‘__first’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:364: error: request for member ‘sgetc’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:365: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:365: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:366: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:368: error: request for member ‘egptr’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:368: error: request for member ‘gptr’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:371: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:371: error: request for member ‘gptr’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:374: error: request for member ‘gptr’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:375: error: request for member ‘gbump’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:376: error: request for member ‘sgetc’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:379: error: request for member ‘snextc’ in ‘__sb->’, which is of non-class type ‘streambuf_type’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:382: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:382: error: ‘traits_type’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:383: error: request for member ‘_M_c’ in ‘__first’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/streambuf_iterator.h:385: error: request for member ‘_M_sbuf’ in ‘__first’, which is of non-class type ‘int’
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:45,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h: At global scope:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:111: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:112: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h: In function ‘int std::__write(int, const _CharT*, int)’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:114: error: request for member ‘_M_put’ in ‘__s’, which is of non-class type ‘int’
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:45,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h: At global scope:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:1643: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:1744: error: ‘string’ does not name a type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:1812: error: ‘string’ does not name a type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:1872: error: wrong number of template arguments (1, should be 3)
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_string.h:104: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class std::basic_string’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:2102: error: ‘string’ has not been declared
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.h:2599,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_ios.h:39,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:45,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:123: error: expected ‘,’ or ‘...’ before ‘&’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:131: error: ‘string’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc: In member function ‘_InIter std::num_get<_CharT, _InIter>::_M_extract_float(_InIter, _InIter, std::ios_base&, std::_Ios_Iostate&, int&) const’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:190: error: ‘string’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:190: error: expected ‘;’ before ‘__found_grouping’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:192: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:256: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:263: error: request for member ‘clear’ in ‘__xtrc’, which is of non-class type ‘int’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:277: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:300: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:336: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc: In member function ‘_InIter std::num_get<_CharT, _InIter>::_M_extract_int(_InIter, _InIter, std::ios_base&, std::_Ios_Iostate&, _ValueT&) const’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:446: error: ‘string’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:446: error: expected ‘;’ before ‘__found_grouping’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:448: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:494: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:534: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:547: error: ‘__found_grouping’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc: In member function ‘virtual _InIter std::num_get<_CharT, _InIter>::do_get(_InIter, _InIter, std::ios_base&, std::_Ios_Iostate&, float&) const’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:674: error: ‘string’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:674: error: expected ‘;’ before ‘__xtrc’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:675: error: ‘__xtrc’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc: In member function ‘virtual _InIter std::num_get<_CharT, _InIter>::do_get(_InIter, _InIter, std::ios_base&, std::_Ios_Iostate&, double&) const’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:689: error: ‘string’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:689: error: expected ‘;’ before ‘__xtrc’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:690: error: ‘__xtrc’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc: In member function ‘virtual _InIter std::num_get<_CharT, _InIter>::do_get(_InIter, _InIter, std::ios_base&, std::_Ios_Iostate&, long double&) const’:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:721: error: ‘string’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:721: error: expected ‘;’ before ‘__xtrc’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:722: error: ‘__xtrc’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc: At global scope:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1266: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1267: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1279: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1280: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1280: error: template-id ‘use_facet<<expression error> >’ for ‘const int& std::use_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1283: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1284: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1284: error: template-id ‘use_facet<<expression error> >’ for ‘const int& std::use_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1296: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1296: error: template-id ‘has_facet<<expression error> >’ for ‘bool std::has_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1300: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1300: error: template-id ‘has_facet<<expression error> >’ for ‘bool std::has_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1305: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1306: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1318: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1319: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1319: error: template-id ‘use_facet<<expression error> >’ for ‘const int& std::use_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1322: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1323: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1323: error: template-id ‘use_facet<<expression error> >’ for ‘const int& std::use_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1335: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1335: error: template-id ‘has_facet<<expression error> >’ for ‘bool std::has_facet(const std::locale&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1339: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/locale_facets.tcc:1339: error: template-id ‘has_facet<<expression error> >’ for ‘bool std::has_facet(const std::locale&)’ does not match any template declaration
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_ios.h:471,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ios:45,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:40,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_ios.tcc:178: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/basic_ios.tcc:181: error: template argument 2 is invalid
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/ostream:565,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:40,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:360: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:361: error: template-id ‘endl<>’ for ‘std::ostream& std::endl(std::ostream&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:362: error: template-id ‘ends<>’ for ‘std::ostream& std::ends(std::ostream&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:363: error: template-id ‘flush<>’ for ‘std::ostream& std::flush(std::ostream&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:364: error: ‘std::ostream& std::operator<<(std::ostream&, char)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:365: error: ‘std::ostream& std::operator<<(std::ostream&, unsigned char)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:366: error: ‘std::ostream& std::operator<<(std::ostream&, signed char)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:367: error: ‘std::ostream& std::operator<<(std::ostream&, const char*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:368: error: ‘std::ostream& std::operator<<(std::ostream&, const unsigned char*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:369: error: ‘std::ostream& std::operator<<(std::ostream&, const signed char*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:371: error: ‘ostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:371: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:372: error: ‘ostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:372: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:373: error: ‘ostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:373: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:375: error: ‘ostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:375: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:376: error: ‘ostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:376: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:378: error: ‘ostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:378: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:379: error: ‘ostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:379: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:380: error: ‘ostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:380: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:383: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:384: error: template-id ‘endl<>’ for ‘std::wostream& std::endl(std::wostream&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:385: error: template-id ‘ends<>’ for ‘std::wostream& std::ends(std::wostream&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:386: error: template-id ‘flush<>’ for ‘std::wostream& std::flush(std::wostream&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:387: error: ‘std::wostream& std::operator<<(std::wostream&, wchar_t)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:388: error: ‘std::wostream& std::operator<<(std::wostream&, char)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:389: error: ‘std::wostream& std::operator<<(std::wostream&, const wchar_t*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:390: error: ‘std::wostream& std::operator<<(std::wostream&, const char*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:392: error: ‘wostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:392: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:393: error: ‘wostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:393: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:394: error: ‘wostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:394: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:396: error: ‘wostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:396: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:397: error: ‘wostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:397: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:399: error: ‘wostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:399: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:400: error: ‘wostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:400: error: ‘_M_insert’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:401: error: ‘wostream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/ostream.tcc:401: error: ‘_M_insert’ is not a template function
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:41,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:592: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:593: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:594: error: invalid type in declaration before ‘(’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:594: error: ‘char_type’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:594: error: ‘__s’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:594: error: expected primary-expression before ‘__n’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:594: error: ‘char_type’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:594: error: initializer expression list treated as compound expression
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:597: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:598: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:599: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:599: error: ‘ignore’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:602: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:603: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:604: error: ‘int_type’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:604: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:604: error: ‘ignore’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:608: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:609: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:610: error: invalid type in declaration before ‘(’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:610: error: ‘char_type’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:610: error: ‘__s’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:610: error: expected primary-expression before ‘__n’
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:610: error: ‘char_type’ was not declared in this scope
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:610: error: initializer expression list treated as compound expression
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:613: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:614: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:615: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:615: error: ‘ignore’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:618: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:619: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:620: error: ‘int_type’ has not been declared
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:620: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:620: error: ‘ignore’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:740: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:741: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:741: error: invalid type in declaration before ‘;’ token
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:741: error: ‘int& std::operator>>(int&, char*)’ must have an argument of class or enumerated type
+In file included from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/istream:830,
+                 from /usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/iostream:41,
+                 from Simplex.h:5,
+                 from Simplex.cpp:3:
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:971: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:972: error: template-id ‘ws<>’ for ‘std::istream& std::ws(std::istream&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:973: error: ‘std::istream& std::operator>>(std::istream&, char&)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:974: error: ‘std::istream& std::operator>>(std::istream&, char*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:975: error: ‘std::istream& std::operator>>(std::istream&, unsigned char&)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:976: error: ‘std::istream& std::operator>>(std::istream&, signed char&)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:977: error: ‘std::istream& std::operator>>(std::istream&, unsigned char*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:978: error: ‘std::istream& std::operator>>(std::istream&, signed char*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:980: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:980: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:981: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:981: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:982: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:982: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:983: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:983: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:984: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:984: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:986: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:986: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:987: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:987: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:989: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:989: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:990: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:990: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:991: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:991: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:992: error: ‘istream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:992: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:994: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:997: error: template argument 2 is invalid
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:998: error: template-id ‘ws<>’ for ‘std::wistream& std::ws(std::wistream&)’ does not match any template declaration
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:999: error: ‘std::wistream& std::operator>>(std::wistream&, wchar_t&)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1000: error: ‘std::wistream& std::operator>>(std::wistream&, wchar_t*)’ must have an argument of class or enumerated type
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1002: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1002: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1003: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1003: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1004: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1004: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1005: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1005: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1006: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1006: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1008: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1008: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1009: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1009: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1011: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1011: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1012: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1012: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1013: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1013: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1014: error: ‘wistream’ is not a class or namespace
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1014: error: ‘_M_extract’ is not a template function
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.4.5/include/g++-v4/bits/istream.tcc:1016: error: template argument 2 is invalid
+make: *** [default] Error 1

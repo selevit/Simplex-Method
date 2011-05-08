@@ -6,4 +6,4 @@
 #	c++ -c sourceData.cpp sourceData.h -o sourceData.o
 
 default:
-	c++ main.cpp simplex.h sourceData.cpp sourceData.h -o Simplex
+	c++ Main.cpp Simplex.h Simplex.cpp InputData.cpp InputData.h -o Simplex
