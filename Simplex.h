@@ -80,14 +80,14 @@ class Simplex : public InputData  {
 		 * столбца текущего плана симплексной таблицы.
 		*/
 
-		int setIndexOfLeavingColumn();
+		void setIndexOfLeavingColumn();
 
 		/*
 		 * Данная функция задает значение индекса ведущей
 		 * строки текущего плана симплексной таблицы.
 		*/
 
-		int setIndexOfLeavingRow();
+		void setIndexOfLeavingRow();
 
 		/*
 		 * Данная функция находит значение
@@ -96,7 +96,6 @@ class Simplex : public InputData  {
 
 		void setAllowingMember();
 
-
 	private:
 
 		/*
@@ -104,7 +103,7 @@ class Simplex : public InputData  {
 		 * в симплекс теблице.
 		*/
 
-		double * basisVars;
+		double ** basisVars;
 
 		/*
 		 * Коэффициенты при  переменных
@@ -132,7 +131,19 @@ class Simplex : public InputData  {
 		*/
 
 		double * thColumn;
-
+		
+		/*
+		 * Индекс ведущей строки.
+		*/		
+			
+		int indexOfLeavingRow;
+		
+		/*
+		 * Индекс ведущего столбца.
+		*/
+			
+		int indexOfLeavingColumn;		
+		
 		/*
 		 * Разрешающий элемент.
 		*/
