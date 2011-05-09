@@ -76,18 +76,25 @@ class Simplex : public InputData  {
 		void setThColumn();
 
 		/*
-		 * Данная функция задает значение разрешающего
+		 * Данная функция задает значение индекса ведущего
 		 * столбца текущего плана симплексной таблицы.
 		*/
 
-		void setLeavingColumn();
+		int setIndexOfLeavingColumn();
+
+		/*
+		 * Данная функция задает значение индекса ведущей
+		 * строки текущего плана симплексной таблицы.
+		*/
+
+		int setIndexOfLeavingRow();
 
 		/*
 		 * Данная функция находит значение
 		 * разрешающего элемента и возвращает его
 		*/
 
-		double getAllowingMember();
+		void setAllowingMember();
 
 
 	private:
@@ -127,10 +134,10 @@ class Simplex : public InputData  {
 		double * thColumn;
 
 		/*
-		 * Разрещающий столбец
+		 * Разрешающий элемент.
 		*/
 
-		double * leavingColumn;
+		double allowingMember;
 };
 
 

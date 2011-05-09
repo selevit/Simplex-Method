@@ -12,16 +12,6 @@ void Simplex::setValues()
 	Simplex::setTargetFunction(1);
 	Simplex::setThColumn();
 	Simplex::displayTable(1);
-
-	bool result = Simplex::checkPlane();
-
-	std::string str;
-	if (result)
-		 str = "Первый опорный план является оптимальным.";
-	else
-		str = "Первый опорный план не оптимален. Его необходимо улучшить.";
-
-	std::cout << str << std::endl << std::endl;
 }
 
 bool Simplex::checkPlane()
@@ -63,12 +53,11 @@ void Simplex::displayTable (int numOfIteration)
 	std::cout << std::endl << std::endl;
 }
 
-void Simplex::setLeavingColumn()
+int Simplex::setIndexOfLeavingColumn()
 {
-	leavingColumn = new double [numOfSourceVars];
+	int i, j;
 	double minOfIndexString = indexString[0];
 	int indexOfMin = 0;
-	int i, j;
 	for (i = 0; i < numOfSourceVars * 2; ++i)
 	{
 
@@ -79,8 +68,30 @@ void Simplex::setLeavingColumn()
 		}
 
 	}
+	return indexOfMin;
+}
+
+int Simplex::setIndexOfLeavingRow()
+{
+	int i;
+	double minOfThColumn = thColumn [0];
+	int indexOfMin = 0;
 	for (i = 0; i < numOfSourceVars; ++i)
-			leavingColumn [i] = varsFactors[i][indexOfMin];
+	{
+		if (minOfThColumn > thColumn [i])
+		{
+			minOfThColumn = thColumn [i];
+			indexOfMin = i;
+		}
+	}
+	return indexOfMin;
+}
+
+void Simplex::setAllowingMember()
+{
+	int indexCol = Simplex::setIndexOfLeavingColumn();
+	int indexRow = Simplex::setIndexOfLeavingRow();
+	allowingMember = varsFactors [indexRow][indexCol];
 }
 
 void Simplex::setBasisVars(int numOfIteration)
@@ -134,13 +145,13 @@ void Simplex::setTargetFunction(int numOfIteration)
 void Simplex::setThColumn ()
 {
 	int i;
-
-	Simplex::setLeavingColumn(); // Задаем значение ведущего столбца.
+	
+	int indexCol = setIndexOfLeavingColumn();
 
 	thColumn = new double [numOfSourceVars];
 
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		thColumn [i] = basisVars [i] / leavingColumn [i];
+		thColumn [i] = basisVars [i] / varsFactors [i][indexCol];
 	}
 }
