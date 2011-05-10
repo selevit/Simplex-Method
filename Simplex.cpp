@@ -82,10 +82,10 @@ void Simplex::displayResult (int numOfIteration)
 
 void Simplex::printOutData(int numOfIteration)
 {
+
+	std::ofstream outFile ("TABLE.TXT", std::ios::app);
 	int i, j;
-	std::ofstream outFile ("TABLE.TXT", std::ios::app);	
-	outFile << std::endl << std::endl;
-	outFile << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
+	outFile << numOfIteration << "-й план:" << std::endl << std::endl;
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
 		outFile << "X" << basisVars [0][i] << "		";
@@ -94,13 +94,22 @@ void Simplex::printOutData(int numOfIteration)
 		{
 			outFile << varsFactors [i][j] << "	";			
 		}
-	outFile << std::endl << std::endl;
+		if (!checkPlane())
+			outFile << "	" <<  thColumn [i];
+		outFile << std::endl << std::endl;
 	}
 	outFile << "F(X)		";
 	outFile << targetFunction << "		";
 	for (i = 0; i < numOfSourceVars * 2; ++i)
 	{
 		outFile << indexString [i] << "	";
+	}
+	outFile << std::endl << std::endl;
+	if (!checkPlane())
+		outFile << "Данный план не оптимален, его необходимо улучшить." << std::endl;
+	else
+	{
+		outFile << "Данный план является оптимальным. Решение найдено." << std::endl;
 	}
 	outFile << std::endl << std::endl;
 }
