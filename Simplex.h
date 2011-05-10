@@ -44,6 +44,8 @@ class Simplex : public InputData  {
 		 * Данная фукнция отображает решение задачи.
 		*/
 
+		void printOutData(int numOfIteration);
+
 		void displayResult(int numOfIteration);		
 
 		/*

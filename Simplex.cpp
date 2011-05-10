@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include <fstream>
+
 #include <string>
 
 #include "Simplex.h"
@@ -20,6 +22,7 @@ void Simplex::setValues()
 		Simplex::setThColumn();
 		Simplex::setIndexOfLeavingRow();
 		Simplex::setAllowingMember();
+		Simplex::printOutData(numOfIteration);
 	}
 	while(!checkPlane());
 	
@@ -77,31 +80,30 @@ void Simplex::displayResult (int numOfIteration)
 	std::cout << std::endl << std::endl;
 }
 
-void printOutData(int numOfIteration)
+void Simplex::printOutData(int numOfIteration)
 {
 	int i, j;
-	
-	std::cout << std::endl << std::endl;
-	std::cout << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
+	std::ofstream outFile ("TABLE.TXT", std::ios::app);	
+	outFile << std::endl << std::endl;
+	outFile << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		std::cout << "X" << basisVars [0][i] << "		";
-		std::cout <<  basisVars[1][i] << "		";
+		outFile << "X" << basisVars [0][i] << "		";
+		outFile <<  basisVars[1][i] << "		";
 		for (j = 0; j < numOfSourceVars * 2; ++j)
 		{
-			std::cout << varsFactors [i][j] << "	";			
+			outFile << varsFactors [i][j] << "	";			
 		}
-	std::cout << std::endl << std::endl;
+	outFile << std::endl << std::endl;
 	}
-	std::cout << "F(X)		";
-	std::cout << targetFunction << "		";
+	outFile << "F(X)		";
+	outFile << targetFunction << "		";
 	for (i = 0; i < numOfSourceVars * 2; ++i)
 	{
-		std::cout << indexString [i] << "	";
+		outFile << indexString [i] << "	";
 	}
-	std::cout << std::endl << std::endl;
+	outFile << std::endl << std::endl;
 }
-
 
 void Simplex::setIndexOfLeavingColumn()
 {
