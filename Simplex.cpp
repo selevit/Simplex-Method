@@ -31,11 +31,26 @@ bool Simplex::checkPlane()
 	bool result = true;	
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		if (indexString[i] < 0)
-		{
-			result = false;
-			break;
-		}
+		if (wayOfTargetFunction)
+
+			if (indexString[i] < 0)
+			{
+				result = false;
+				break;
+			}
+		
+		else
+		
+			if (indexString[i] < 0)
+			{
+				result = false;
+				break;
+			}
+
+
+
+
+		
 	}
 	return result;
 }

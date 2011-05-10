@@ -9,6 +9,7 @@ void InputData::getAndSetInputData()
 {
 	setNumOfSourceVars();
 	setFactorsOfTargetFunctionVars();
+	setWayOfTargetFunction();
 	setFactorsOfSystemVars();
 	setFreeMembersOfSystem();
 }
@@ -91,6 +92,32 @@ bool InputData::setNumOfSourceVars()
 		error(1);
 		setNumOfSourceVars();
 	}
+}
+
+bool InputData::getWayOfTargetFunction()
+{
+	std::string maxOrMin;
+	std::cout << "Введите направление целевой функции (max, min): ";
+	std::cin >> maxOrMin;
+	if (maxOrMin == "max")
+	{
+		std::cout << std::endl;
+		return true;
+	}
+	else if (maxOrMin == "min")
+	{
+		std::cout << std::endl;
+		return false;
+	}
+	else
+	{
+		error(1);
+		getWayOfTargetFunction();
+	}
+}
+void InputData::setWayOfTargetFunction()
+{
+	wayOfTargetFunction = getWayOfTargetFunction();
 }
 
 void InputData::error(int numberOfError)
