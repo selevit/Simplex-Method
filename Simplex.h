@@ -41,11 +41,10 @@ class Simplex : public InputData  {
 		void setBasisVars(int numOfIteration);
 
 		/*
-		 * Данная фукнция отображает симплексную таблицу
-		 * для текущего плана.
+		 * Данная фукнция отображает решение задачи.
 		*/
 
-		void displayTable(int numOfIteration);		
+		void displayResult(int numOfIteration);		
 
 		/*
 		 * Данная функция задаен значения коэффициентов
@@ -111,8 +110,6 @@ class Simplex : public InputData  {
 		*/
 
 		double ** varsFactors;
-
-
 
 		/*
 		 * Индексная строка симплексной таблицы

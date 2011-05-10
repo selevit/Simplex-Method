@@ -1,17 +1,64 @@
 #include <iostream>
 
+#include <fstream>
+
 #include <string>
 
 #include "InputData.h"
 
-
 void InputData::getAndSetInputData()
 {
+	selectInputMethod();
+	setInputFile();
 	setNumOfSourceVars();
 	setFactorsOfTargetFunctionVars();
 	setWayOfTargetFunction();
 	setFactorsOfSystemVars();
 	setFreeMembersOfSystem();
+}
+
+bool InputData::selectInputMethod()
+{
+	int userInputMethod;
+	std::cout << "Выберите метод ввода (вручную - 1, из файла - 2): ";
+	std::cin >> userInputMethod;
+	
+	switch (userInputMethod)
+	{
+		case 1:
+			inputMethod = false;
+			std::cout << std::endl;
+			break;
+		case 2:
+			inputMethod = true;
+			std::cout << std::endl;
+			break;
+		default:
+			error(1);
+			selectInputMethod();
+			break;
+	}
+}
+
+void InputData::setInputFile ()
+{
+	inputFileName = new char;
+	char * tmpInputFileName = new char;
+	if (inputMethod)
+	{	
+		std::cout << "Введите имя или путь к входному файлу: ";
+		std::cin >> tmpInputFileName;
+
+		std::ofstream check (tmpInputFileName, std::ios_base::in);
+		if (!check)
+		{
+			error(2);
+			setInputFile();
+		}
+		else
+			inputFileName = tmpInputFileName;
+	}
+		
 }
 
 double * InputData::getFreeMembersOfSystem()
@@ -131,6 +178,7 @@ void InputData::error(int numberOfError)
 		case 1:
 			errorMessage = "Вы ввели недопустимое значение.";
 			break;
+		case 2: errorMessage = "Нет доступа к файлу!";
 	}
 	std::cout << std::endl;
 	std::cout << errorMessage;

@@ -20,9 +20,11 @@ void Simplex::setValues()
 		Simplex::setThColumn();
 		Simplex::setIndexOfLeavingRow();
 		Simplex::setAllowingMember();
-		Simplex::displayTable(numOfIteration);
 	}
 	while(!checkPlane());
+	
+	Simplex::displayResult(numOfIteration);
+
 }
 
 bool Simplex::checkPlane()
@@ -46,21 +48,16 @@ bool Simplex::checkPlane()
 				result = false;
 				break;
 			}
-
-
-
-
-		
 	}
 	return result;
 }
 
-void Simplex::displayTable (int numOfIteration)
+void Simplex::displayResult (int numOfIteration)
 {
 	int i, j;
 	
 	std::cout << std::endl << std::endl;
-	std::cout << numOfIteration << "-й план:" << std::endl << std::endl;
+	std::cout << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
 		std::cout << "X" << basisVars [0][i] << "		";
@@ -69,9 +66,7 @@ void Simplex::displayTable (int numOfIteration)
 		{
 			std::cout << varsFactors [i][j] << "	";			
 		}
-		if (!checkPlane())
-			std::cout << "	" <<  thColumn [i];
-		std::cout << std::endl << std::endl;
+	std::cout << std::endl << std::endl;
 	}
 	std::cout << "F(X)		";
 	std::cout << targetFunction << "		";
@@ -80,12 +75,33 @@ void Simplex::displayTable (int numOfIteration)
 		std::cout << indexString [i] << "	";
 	}
 	std::cout << std::endl << std::endl;
-	if (!checkPlane())
-		std::cout << "Данный план не оптимален, его необходимо улучшить." << std::endl;
-	else
-		std::cout << "Данный план является оптимальным. Решение найдено." << std::endl;
-	std::cout << std::endl;
 }
+
+void printOutData(int numOfIteration)
+{
+	int i, j;
+	
+	std::cout << std::endl << std::endl;
+	std::cout << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
+	for (i = 0; i < numOfSourceVars; ++i)
+	{
+		std::cout << "X" << basisVars [0][i] << "		";
+		std::cout <<  basisVars[1][i] << "		";
+		for (j = 0; j < numOfSourceVars * 2; ++j)
+		{
+			std::cout << varsFactors [i][j] << "	";			
+		}
+	std::cout << std::endl << std::endl;
+	}
+	std::cout << "F(X)		";
+	std::cout << targetFunction << "		";
+	for (i = 0; i < numOfSourceVars * 2; ++i)
+	{
+		std::cout << indexString [i] << "	";
+	}
+	std::cout << std::endl << std::endl;
+}
+
 
 void Simplex::setIndexOfLeavingColumn()
 {
