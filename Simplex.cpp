@@ -24,10 +24,9 @@ void Simplex::setValues()
 		Simplex::setAllowingMember();
 		Simplex::printOutData(numOfIteration);
 	}
-	while(!checkPlane());
+	while (!checkPlane());
 	
 	Simplex::displayResult(numOfIteration);
-
 }
 
 bool Simplex::checkPlane()
@@ -206,7 +205,7 @@ void Simplex::setFactorsOfVars(int numOfIteration)
 			for(j = 0; j < numOfSourceVars * 2; ++j)
 
 				if (j < numOfSourceVars)
-					varsFactors[i][j] = factorsOfSystemVars[i][j];
+					varsFactors[i][j] = freeMembersOfSystem [i] < 0 ? factorsOfSystemVars [i][j] * -1 : factorsOfSystemVars[i][j];
 				else
 					varsFactors [i][j] = i + numOfSourceVars == j;
 		
