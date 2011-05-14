@@ -18,6 +18,7 @@
 #define _SOURCE_DATA_H_ 1
 
 class InputData {
+
 	public:
 	
 		/* 

@@ -28,8 +28,7 @@ int main()
 	 * Visual Studio 2008, я задаю русскую локаль по умолчанию.
 	 */
 	setlocale(LC_ALL, "Russian");
-	Simplex * MainObject = new Simplex;
-	MainObject->getAndSetInputData();
-	MainObject->setValues();
-	return 0;
+	Simplex MainObject;
+	MainObject.getAndSetInputData();  
+	return MainObject.setValues();
 }
