@@ -132,9 +132,9 @@ bool Simplex::checkPlane()
 				break;
 			}
 		
-		else
+		else if (!wayOfTargetFunction)
 		
-			if (indexString[i] < 0)
+			if (indexString[i] >= 0)
 			{
 				result = false;
 				break;
@@ -146,17 +146,17 @@ bool Simplex::checkPlane()
 void Simplex::displayResult (int numOfIteration)
 {
 	int i, j;
+	std::cout << std::endl << std::endl;
 	if (checkPlane() && checkThColumn())
-	{
-		std::cout << std::endl << std::endl;
 		std::cout << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
-		for (i = 0; i < numOfSourceVars; ++i)
-			std::cout << "X" << basisVars [0][i] << " = " <<  basisVars[1][i] << std::endl;	
-		std::cout << std::endl;
-		std::cout << "F(X) = " << targetFunction << std::endl << std::endl;
-	}
+	else if (!checkPlane() && checkThColumn())
+		std::cout << "Данная задача имеет одно единственное решение, но оно не является оптимальным.\nЭтим решением является первый опорный план задачи." << std::endl << std::endl;
 	else
-		error(4);
+		std::cout << "Целевая функция не ограничена. Задача с данным условием не имеет решений." << std::endl << std::endl;	
+	for (i = 0; i < numOfSourceVars; ++i)
+		std::cout << "X" << basisVars [0][i] << " = " <<  basisVars[1][i] << std::endl;	
+	std::cout << std::endl;
+	std::cout << "F(X) = " << targetFunction << std::endl << std::endl;
 }
 
 void Simplex::printOutData(int numOfIteration)
