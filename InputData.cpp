@@ -179,6 +179,9 @@ void InputData::error(int numberOfError)
 			errorMessage = "Вы ввели недопустимое значение.";
 			break;
 		case 2: errorMessage = "Нет доступа к файлу!";
+			break;
+		case 4: errorMessage = "Целевая функция не ограничена. Задача с данным условием не имеет решений.";
+			break;
 	}
 	std::cout << std::endl;
 	std::cout << errorMessage;

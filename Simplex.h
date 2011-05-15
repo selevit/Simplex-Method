@@ -39,6 +39,8 @@ class Simplex : public InputData  {
 		 * на оптимальность.
 		*/
 		
+		bool checkThColumn();
+
 		bool checkPlane();
 
 		/*
@@ -82,7 +84,7 @@ class Simplex : public InputData  {
 		 * последнего столбца симплексной таблицы.
 		*/
 
-		void setThColumn();
+		bool setThColumn();
 
 		/*
 		 * Данная функция задает значение индекса ведущего

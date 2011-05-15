@@ -1,2 +1,2 @@
 default:
-	c++ Main.cpp Simplex.cpp InputData.cpp -o Simplex
+	c++ -ggdb Main.cpp Simplex.cpp InputData.cpp -o Simplex

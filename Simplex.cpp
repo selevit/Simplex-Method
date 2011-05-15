@@ -4,6 +4,10 @@
 
 #include <string>
 
+#include <sstream>
+
+#include <algorithm>
+
 #include "Simplex.h"
 
 
@@ -53,19 +57,10 @@ bool Simplex::init()
 	setIndexOfLeavingColumn();
 	
 	
-	
-	
 	thColumn = new double [numOfSourceVars];
-
-	for (i = 0; i < numOfSourceVars; ++i)
-	{
-		thColumn [i] = basisVars [1][i] / varsFactors [i][indexOfLeavingColumn];
-		if (thColumn[i] <= 0) {
-			std::cout << "Функция не определена" << std::endl;
-			return false;
-		}
-	}
 	
+	for (i = 0; i < numOfSourceVars; ++i)
+		thColumn [i] = basisVars [1][i] / varsFactors [i][indexOfLeavingColumn];
 	
 	
 	setIndexOfLeavingRow();
@@ -73,24 +68,20 @@ bool Simplex::init()
 	
 	
 	setAllowingMember();
-
-	return true;
 }
 
 
 int Simplex::setValues()
 {
 
-	if (!init()) {
-		return 1;
-	}
+	int i;
+	int numOfIteration = 1;
+	Simplex::printOutData(numOfIteration);
 
-	int numOfIteration = 0;
-	while (!checkPlane())
+	while (!checkPlane() && checkThColumn()) 
 	{
+		
 		++numOfIteration;
-	
-
 		Simplex::setTargetFunction(numOfIteration);
 		Simplex::setBasisVars(numOfIteration);
 		Simplex::setIndexString(numOfIteration);
@@ -99,19 +90,38 @@ int Simplex::setValues()
 		Simplex::setThColumn();
 		Simplex::setIndexOfLeavingRow();
 		Simplex::setAllowingMember();
-		Simplex::printOutData(numOfIteration);
-		
-	}
+		Simplex::printOutData(numOfIteration);	
 	
+	}
+
 	Simplex::displayResult(numOfIteration);
 
 	return 0;
 }
 
+bool Simplex::checkThColumn()
+{
+	int i;
+	bool result = true;
+
+	for (i = 0; i < numOfSourceVars; ++i)
+	{
+		if (thColumn [i] <= 0)
+		{
+			result = false;
+			break;
+		}
+	}
+
+	return result;
+
+}
+
 bool Simplex::checkPlane()
 {
 	int i;
-	bool result = true;	
+	bool result = true; 
+	
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
 		if (wayOfTargetFunction)
@@ -136,60 +146,81 @@ bool Simplex::checkPlane()
 void Simplex::displayResult (int numOfIteration)
 {
 	int i, j;
-	
-	std::cout << std::endl << std::endl;
-	std::cout << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
-	for (i = 0; i < numOfSourceVars; ++i)
+	if (checkPlane() && checkThColumn())
 	{
-		std::cout << "X" << basisVars [0][i] << "		";
-		std::cout <<  basisVars[1][i] << "		";
-		for (j = 0; j < numOfSourceVars * 2; ++j)
-		{
-			std::cout << varsFactors [i][j] << "	";			
-		}
-	std::cout << std::endl << std::endl;
+		std::cout << std::endl << std::endl;
+		std::cout << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
+		for (i = 0; i < numOfSourceVars; ++i)
+			std::cout << "X" << basisVars [0][i] << " = " <<  basisVars[1][i] << std::endl;	
+		std::cout << std::endl;
+		std::cout << "F(X) = " << targetFunction << std::endl << std::endl;
 	}
-	std::cout << "F(X)		";
-	std::cout << targetFunction << "		";
-	for (i = 0; i < numOfSourceVars * 2; ++i)
-	{
-		std::cout << indexString [i] << "	";
-	}
-	std::cout << std::endl << std::endl;
+	else
+		error(4);
 }
 
 void Simplex::printOutData(int numOfIteration)
 {
 
-	std::ofstream outFile ("TABLE.TXT", std::ios::app);
 	int i, j;
-	outFile << numOfIteration << "-й план:" << std::endl << std::endl;
+
+	std::stringstream printResult;
+
+
+	std::stringstream outVar;
+	
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		outFile << "X" << basisVars [0][i] << "		";
-		outFile <<  basisVars[1][i] << "		";
+			if (factorsOfTargetFunctionVars[i] > 0)
+				if (i)
+					outVar << " + " << factorsOfTargetFunctionVars[i] << "X" <<  i + 1;
+				else
+					outVar << factorsOfTargetFunctionVars[i] << "X" <<  i + 1;
+					
+			else if (factorsOfTargetFunctionVars < 0)
+				outVar << factorsOfTargetFunctionVars[i]  <<  "X" << i + 1;
+
+	}
+	printResult << "Задана целевая функция: F(X) = " << outVar.str();
+
+	printResult << std::endl << std::endl;
+	printResult <<  numOfIteration << "-й план " << std::endl << std::endl;
+	
+
+	for (i = 0; i < numOfSourceVars; ++i)
+	{
+		printResult << "X" << basisVars [0][i] << "		";
+		printResult <<  basisVars[1][i] << "		";
 		for (j = 0; j < numOfSourceVars * 2; ++j)
 		{
-			outFile << varsFactors [i][j] << "	";			
+			printResult << varsFactors [i][j] << "	";			
 		}
 		if (!checkPlane())
-			outFile << "	" <<  thColumn [i];
-		outFile << std::endl << std::endl;
+			printResult << "	" <<  thColumn [i];
+		printResult << std::endl << std::endl;
 	}
-	outFile << "F(X)		";
-	outFile << targetFunction << "		";
+
+	printResult << "F(X)		";
+
+	printResult << targetFunction << "		";
+	
 	for (i = 0; i < numOfSourceVars * 2; ++i)
 	{
-		outFile << indexString [i] << "	";
+		printResult << indexString [i] << "	";
 	}
-	outFile << std::endl << std::endl;
+	printResult << std::endl << std::endl;
+
 	if (!checkPlane())
-		outFile << "Данный план не оптимален, его необходимо улучшить." << std::endl;
+		printResult << "Данный план не оптимален, его необходимо улучшить." << std::endl << std::endl;
+
 	else
-	{
-		outFile << "Данный план является оптимальным. Решение найдено." << std::endl;
-	}
-	outFile << std::endl << std::endl;
+		printResult << "Данный план является оптимальным. Решение найдено." << std::endl << std::endl;
+
+	printResult << std::endl;
+
+	std::ofstream outFile ("TABLE.TXT", std::ios::app);
+
+	outFile << printResult.str();
 }
 
 void Simplex::setIndexOfLeavingColumn()
@@ -300,12 +331,9 @@ void Simplex::setTargetFunction(int numOfIteration)
 		targetFunction -= ((A * B) / allowingMember);
 }
 
-void Simplex::setThColumn ()
+bool Simplex::setThColumn ()
 {
 	int i;
-
 	for (i = 0; i < numOfSourceVars; ++i)
-	{
 		thColumn [i] = basisVars [1][i] / varsFactors [i][indexOfLeavingColumn];
-	}
 }

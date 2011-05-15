@@ -30,5 +30,6 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	Simplex MainObject;
 	MainObject.getAndSetInputData();  
+	MainObject.init();
 	return MainObject.setValues();
 }
