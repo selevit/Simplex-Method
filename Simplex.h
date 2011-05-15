@@ -109,6 +109,8 @@ class Simplex : public InputData  {
 
 	private:
 
+	struct {
+
 		/*
 		 * Значения базисных переменных
 		 * в симплекс теблице.
@@ -158,7 +160,19 @@ class Simplex : public InputData  {
 		*/
 
 		double allowingMember;
+	} currentPlane, bestPlane;
+
 };
+
+/*где-то в конце итерации
+
+if (error() || finished()) {
+	print(best);
+}
+if (better(current, best)) {
+	best = current;
+}
+*/
 
 
 #endif

@@ -17,39 +17,39 @@ bool Simplex::init()
 	int i,j;	
 	
 	
-	targetFunction = 0;
+	currentPlane.targetFunction = 0;
 
-	basisVars = new double * [2];
+	currentPlane.basisVars = new double * [2];
 
 	for (i = 0; i < 2; ++i)
 	{
-		basisVars [i] = new double [numOfSourceVars];
+		currentPlane.basisVars [i] = new double [numOfSourceVars];
 	}
 
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		basisVars[0][i] = numOfSourceVars + i + 1;
-		basisVars[1][i] = freeMembersOfSystem[i];
+		currentPlane.basisVars[0][i] = numOfSourceVars + i + 1;
+		currentPlane.basisVars[1][i] = freeMembersOfSystem[i];
 	}
 	
 	
-	indexString = new double [numOfSourceVars * 2];
+	currentPlane.indexString = new double [numOfSourceVars * 2];
 		for (i = 0; i < numOfSourceVars * 2; ++i)
-			indexString [i] = ((i < numOfSourceVars) ? -(factorsOfTargetFunctionVars [i]) : 0);
+			currentPlane.indexString [i] = ((i < numOfSourceVars) ? -(factorsOfTargetFunctionVars [i]) : 0);
 
 
-	varsFactors = new double * [numOfSourceVars];
+	currentPlane.varsFactors = new double * [numOfSourceVars];
 		for (i = 0; i < numOfSourceVars; ++i)
-			varsFactors[i] = new double [numOfSourceVars * 2];
+			currentPlane.varsFactors[i] = new double [numOfSourceVars * 2];
 		
 	for  (i = 0; i < numOfSourceVars; ++i)
 	{
 		for(j = 0; j < numOfSourceVars * 2; ++j)
 		{
 			if (j < numOfSourceVars)
-				varsFactors[i][j] = freeMembersOfSystem [i] < 0 ? factorsOfSystemVars [i][j] * -1 : factorsOfSystemVars[i][j];
+				currentPlane.varsFactors[i][j] = freeMembersOfSystem [i] < 0 ? factorsOfSystemVars [i][j] * -1 : factorsOfSystemVars[i][j];
 			else
-				varsFactors [i][j] = i + numOfSourceVars == j;
+				currentPlane.varsFactors [i][j] = i + numOfSourceVars == j;
 		}
 	}
 	
@@ -57,10 +57,10 @@ bool Simplex::init()
 	setIndexOfLeavingColumn();
 	
 	
-	thColumn = new double [numOfSourceVars];
+	currentPlane.thColumn = new double [numOfSourceVars];
 	
 	for (i = 0; i < numOfSourceVars; ++i)
-		thColumn [i] = basisVars [1][i] / varsFactors [i][indexOfLeavingColumn];
+		currentPlane.thColumn [i] = currentPlane.basisVars [1][i] / currentPlane.varsFactors [i][currentPlane.indexOfLeavingColumn];
 	
 	
 	setIndexOfLeavingRow();
@@ -106,7 +106,7 @@ bool Simplex::checkThColumn()
 
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		if (thColumn [i] <= 0)
+		if (currentPlane.thColumn [i] <= 0)
 		{
 			result = false;
 			break;
@@ -126,7 +126,7 @@ bool Simplex::checkPlane()
 	{
 		if (wayOfTargetFunction)
 
-			if (indexString[i] < 0)
+			if (currentPlane.indexString[i] < 0)
 			{
 				result = false;
 				break;
@@ -134,7 +134,7 @@ bool Simplex::checkPlane()
 		
 		else if (!wayOfTargetFunction)
 		
-			if (indexString[i] >= 0)
+			if (currentPlane.indexString[i] >= 0)
 			{
 				result = false;
 				break;
@@ -154,9 +154,9 @@ void Simplex::displayResult (int numOfIteration)
 	else
 		std::cout << "Целевая функция не ограничена. Задача с данным условием не имеет решений." << std::endl << std::endl;	
 	for (i = 0; i < numOfSourceVars; ++i)
-		std::cout << "X" << basisVars [0][i] << " = " <<  basisVars[1][i] << std::endl;	
+		std::cout << "X" << currentPlane.basisVars [0][i] << " = " <<  currentPlane.basisVars[1][i] << std::endl;	
 	std::cout << std::endl;
-	std::cout << "F(X) = " << targetFunction << std::endl << std::endl;
+	std::cout << "F(X) = " << currentPlane.targetFunction << std::endl << std::endl;
 }
 
 void Simplex::printOutData(int numOfIteration)
@@ -189,24 +189,24 @@ void Simplex::printOutData(int numOfIteration)
 
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		printResult << "X" << basisVars [0][i] << "		";
-		printResult <<  basisVars[1][i] << "		";
+		printResult << "X" << currentPlane.basisVars [0][i] << "		";
+		printResult <<  currentPlane.basisVars[1][i] << "		";
 		for (j = 0; j < numOfSourceVars * 2; ++j)
 		{
-			printResult << varsFactors [i][j] << "	";			
+			printResult << currentPlane.varsFactors [i][j] << "	";			
 		}
 		if (!checkPlane())
-			printResult << "	" <<  thColumn [i];
+			printResult << "	" <<  currentPlane.thColumn [i];
 		printResult << std::endl << std::endl;
 	}
 
 	printResult << "F(X)		";
 
-	printResult << targetFunction << "		";
+	printResult << currentPlane.targetFunction << "		";
 	
 	for (i = 0; i < numOfSourceVars * 2; ++i)
 	{
-		printResult << indexString [i] << "	";
+		printResult << currentPlane.indexString [i] << "	";
 	}
 	printResult << std::endl << std::endl;
 
@@ -226,59 +226,59 @@ void Simplex::printOutData(int numOfIteration)
 void Simplex::setIndexOfLeavingColumn()
 {
 	int i, j;
-	double minOfIndexString = indexString[0];
+	double minOfIndexString = currentPlane.indexString[0];
 	int indexOfMin = 0;
 	for (i = 0; i < numOfSourceVars * 2; ++i)
 	{
 
-		if (indexString[i] < 0 && minOfIndexString > indexString[i])
+		if (currentPlane.indexString[i] < 0 && minOfIndexString > currentPlane.indexString[i])
 		{
-			minOfIndexString = indexString [i];
+			minOfIndexString = currentPlane.indexString [i];
 			indexOfMin = i;
 		}
 
 	}
-	indexOfLeavingColumn = indexOfMin;
+	currentPlane.indexOfLeavingColumn = indexOfMin;
 }
 
 void Simplex::setIndexOfLeavingRow()
 {
 	int i;
-	double minOfThColumn = thColumn [0];
+	double minOfThColumn = currentPlane.thColumn [0];
 	int indexOfMin = 0;
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		if (minOfThColumn > thColumn [i])
+		if (minOfThColumn > currentPlane.thColumn [i])
 		{
-			minOfThColumn = thColumn [i];
+			minOfThColumn = currentPlane.thColumn [i];
 			indexOfMin = i;
 		}
 	}
-	indexOfLeavingRow = indexOfMin;
+	currentPlane.indexOfLeavingRow = indexOfMin;
 }
 
 void Simplex::setAllowingMember()
 {
-	allowingMember = varsFactors [indexOfLeavingRow][indexOfLeavingColumn];
+	currentPlane.allowingMember = currentPlane.varsFactors [currentPlane.indexOfLeavingRow][currentPlane.indexOfLeavingColumn];
 }
 
 void Simplex::setBasisVars(int numOfIteration)
 {
 		int i;
 		double * tmpBasisVars = new double [numOfSourceVars];
-		double A = basisVars[1][indexOfLeavingRow];
+		double A = currentPlane.basisVars[1][currentPlane.indexOfLeavingRow];
 		double B;
 		for (i = 0; i < numOfSourceVars; ++i)
 		{
-			B = varsFactors [i][indexOfLeavingColumn];
-			tmpBasisVars [i] = basisVars [1][i];
-			tmpBasisVars [i] = i == indexOfLeavingRow ? tmpBasisVars[i] / allowingMember :  basisVars [1][i] - ((A * B) / allowingMember);
+			B = currentPlane.varsFactors [i][currentPlane.indexOfLeavingColumn];
+			tmpBasisVars [i] = currentPlane.basisVars [1][i];
+			tmpBasisVars [i] = i == currentPlane.indexOfLeavingRow ? tmpBasisVars[i] / currentPlane.allowingMember :  currentPlane.basisVars [1][i] - ((A * B) / currentPlane.allowingMember);
 		}
 		for (i = 0; i < numOfSourceVars; ++i)
 		{
-			basisVars[1][i] = tmpBasisVars[i];
+			currentPlane.basisVars[1][i] = tmpBasisVars[i];
 		}
-		basisVars[0][indexOfLeavingRow] = indexOfLeavingColumn + 1;
+		currentPlane.basisVars[0][currentPlane.indexOfLeavingRow] = currentPlane.indexOfLeavingColumn + 1;
 }	
 
 void Simplex::setFactorsOfVars(int numOfIteration)
@@ -298,13 +298,13 @@ void Simplex::setFactorsOfVars(int numOfIteration)
 		{
 			for (j = 0; j < numOfSourceVars * 2; ++j)
 			{
-				tmpVarsFactors [i][j] = varsFactors [i][j];
-				A = varsFactors [indexOfLeavingRow][j];
-				B = varsFactors [i][indexOfLeavingColumn];
-				tmpVarsFactors[i][j] = i == indexOfLeavingRow ? tmpVarsFactors [i][j] / allowingMember :  varsFactors[i][j] - ((A * B) / allowingMember);
+				tmpVarsFactors [i][j] = currentPlane.varsFactors [i][j];
+				A = currentPlane.varsFactors [currentPlane.indexOfLeavingRow][j];
+				B = currentPlane.varsFactors [i][currentPlane.indexOfLeavingColumn];
+				tmpVarsFactors[i][j] = i == currentPlane.indexOfLeavingRow ? tmpVarsFactors [i][j] / currentPlane.allowingMember :  currentPlane.varsFactors[i][j] - ((A * B) / currentPlane.allowingMember);
 			}
 		}
-		varsFactors = tmpVarsFactors;
+		currentPlane.varsFactors = tmpVarsFactors;
 }
 
 
@@ -315,25 +315,25 @@ void Simplex::setIndexString (int numOfIteration)
 		double A, B;
 		for (i = 0; i < numOfSourceVars * 2; ++i)
 		{
-			A = varsFactors [indexOfLeavingRow][i];
-			B = indexString [indexOfLeavingColumn];
-			tmpIndexString [i] = indexString [i];
-			tmpIndexString [i] = indexString [i] - ((A * B) / allowingMember);
+			A = currentPlane.varsFactors [currentPlane.indexOfLeavingRow][i];
+			B = currentPlane.indexString [currentPlane.indexOfLeavingColumn];
+			tmpIndexString [i] = currentPlane.indexString [i];
+			tmpIndexString [i] = currentPlane.indexString [i] - ((A * B) / currentPlane.allowingMember);
 		}
 		
-		indexString = tmpIndexString;
+		currentPlane.indexString = tmpIndexString;
 }
 
 void Simplex::setTargetFunction(int numOfIteration)
 {
-		double A = basisVars [1][indexOfLeavingRow];
-		double B = indexString [indexOfLeavingColumn];
-		targetFunction -= ((A * B) / allowingMember);
+		double A = currentPlane.basisVars [1][currentPlane.indexOfLeavingRow];
+		double B = currentPlane.indexString [currentPlane.indexOfLeavingColumn];
+		currentPlane.targetFunction -= ((A * B) / currentPlane.allowingMember);
 }
 
 bool Simplex::setThColumn ()
 {
 	int i;
 	for (i = 0; i < numOfSourceVars; ++i)
-		thColumn [i] = basisVars [1][i] / varsFactors [i][indexOfLeavingColumn];
+		currentPlane.thColumn [i] = currentPlane.basisVars [1][i] / currentPlane.varsFactors [i][currentPlane.indexOfLeavingColumn];
 }
