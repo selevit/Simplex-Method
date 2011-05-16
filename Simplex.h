@@ -5,6 +5,8 @@
 #include <iostream>
 
 #include "InputData.h"
+#include "Plane.hh"
+#include "SubPlane.hh"
 
 
 /*
@@ -108,60 +110,8 @@ class Simplex : public InputData  {
 		void setAllowingMember();
 
 	private:
-
-	struct {
-
-		/*
-		 * Значения базисных переменных
-		 * в симплекс теблице.
-		*/
-
-		double ** basisVars;
-
-		/*
-		 * Коэффициенты при  переменных
-		 * в симплекс-таблице.
-		*/
-
-		double ** varsFactors;
-
-		/*
-		 * Индексная строка симплексной таблицы
-		*/
-
-		double * indexString;
-
-		/*
-		 * Значение целевой функции
-		*/
-
-		double targetFunction;
-
-		/*
-		 * Последний столбец симплексной таблицы
-		*/
-
-		double * thColumn;
-		
-		/*
-		 * Индекс ведущей строки.
-		*/		
-			
-		int indexOfLeavingRow;
-		
-		/*
-		 * Индекс ведущего столбца.
-		*/
-			
-		int indexOfLeavingColumn;		
-		
-		/*
-		 * Разрешающий элемент.
-		*/
-
-		double allowingMember;
-	} currentPlane, bestPlane;
-
+		Plane<double> *currentPlane, *bestPlane;
+		SubPlane<double> *tmp;
 };
 
 /*где-то в конце итерации
