@@ -269,20 +269,9 @@ void Simplex::setBasisVars(int numOfIteration)
 				(*tmp->basisVars)[1][i] = (*currentPlane->basisVars)[1][i] - ((A * B) / currentPlane->allowingMember);
 			}
 		}
-		for (i = 0; i < numOfSourceVars; ++i)
-		{
-			(*currentPlane->basisVars)[1][i] = (*tmp->basisVars)[1][i];
-		//	ты вообще знаешь что... может быть я смогу тебе добавить ещё один оператор и ты сможешь делать это же, но без циклов
-		//	я буду очень рад, мой сенсей!
-		//	TODO
-		//	почему сенсей?
-		//	ну ты меня потому что учишь а не посылаешь в гугл)))))
-		//
-		//	ну я ругаюсь как десятеро тех, кто посылает да норм))))
-		//
-		//
 
-		}
+		memcpy((*currentPlane->basisVars)[1], (*tmp->basisVars)[1], numOfSourceVars*sizeof(double));
+
 		(*currentPlane->basisVars)[0][currentPlane->indexOfLeavingRow] = currentPlane->indexOfLeavingColumn + 1;
 }	
 
@@ -291,7 +280,6 @@ void Simplex::setFactorsOfVars(int numOfIteration)
 		int i, j;
 		double A, B;
 	
-		std::cerr << std::endl << std::endl;
 		for (i = 0; i < numOfSourceVars; ++i)
 		{
 			for (j = 0; j < numOfSourceVars * 2; ++j)
@@ -300,18 +288,14 @@ void Simplex::setFactorsOfVars(int numOfIteration)
 				A = (*currentPlane->varsFactors)[currentPlane->indexOfLeavingRow][j];
 				B = (*currentPlane->varsFactors)[i][currentPlane->indexOfLeavingColumn];
 				if (i == currentPlane->indexOfLeavingRow) {
-					(*tmp->varsFactors)[i][j] = (*tmp->varsFactors)[i][j] / currentPlane->allowingMember;
+					(*tmp->varsFactors)[i][j] /= currentPlane->allowingMember;
 				} else {
 					(*tmp->varsFactors)[i][j] = (*currentPlane->varsFactors)[i][j] - ((A * B) / currentPlane->allowingMember);
 				}
 
-				std::cerr << (*currentPlane->varsFactors)[i][j] << "	";
 			}
-			std::cerr << std::endl << std::endl;
 		}
-			std::cerr << std::endl << std::endl;
-			std::cerr << currentPlane->allowingMember << std::endl;
-		currentPlane->varsFactors = tmp->varsFactors;
+		(*currentPlane->varsFactors) = (*tmp->varsFactors);
 }
 
 
@@ -327,7 +311,7 @@ void Simplex::setIndexString (int numOfIteration)
 			tmp->indexString [i] = currentPlane->indexString [i] - ((A * B) / currentPlane->allowingMember);
 		}
 		
-		currentPlane->indexString = tmp->indexString;
+		memcpy(currentPlane->indexString, tmp->indexString, numOfSourceVars*2*sizeof(double));
 }
 
 void Simplex::setTargetFunction(int numOfIteration)

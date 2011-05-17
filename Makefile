@@ -1,5 +1,4 @@
-default:
+Default:
 	c++ -ggdb Main.cpp Simplex.cpp InputData.cpp -o Simplex
-matrix:
-	c++ -ggdb foo.cpp -o foo
-	./foo
+matrix_test:
+	c++ -ggdb MatrixTest.cc -o MatrixTest

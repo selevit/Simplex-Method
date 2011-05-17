@@ -22,7 +22,6 @@ class matrix {
 template <class T>
 matrix<T>::matrix(unsigned int _x, unsigned int _y) : x(_x), y(_y), size(_x*_y)
 {
-//	std::cerr << "Allocating memory for [" << x << "][" << y << "]" << std::endl;
 	if ( size <=0 ) {
 		err(20);
 	}
@@ -32,7 +31,6 @@ matrix<T>::matrix(unsigned int _x, unsigned int _y) : x(_x), y(_y), size(_x*_y)
 template <class T>
 T* matrix<T>::operator[](unsigned int i)
 {
-//	std::cerr << i << " " << x << " " << y << " " << size << std::endl;
 	if (i >= x) {
 		err(22);
 	}
