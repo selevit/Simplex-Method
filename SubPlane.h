@@ -1,7 +1,7 @@
-#ifndef _SUBPLANE_HH_
-#define _SUBPLANE_HH_
+#ifndef _SUBPLANE_H_
+#define _SUBPLANE_H_
 
-#include "Matrix.hh"
+#include "Matrix.h"
 
 template <class T>
 class SubPlane {
@@ -34,4 +34,4 @@ public:
 	}
 };
 
-#endif /* _SUBPLANE_HH_ */
+#endif /* _SUBPLANE_H_ */

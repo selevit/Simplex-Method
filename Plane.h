@@ -1,7 +1,7 @@
-#ifndef _PLANE_HH_
-#define _PLANE_HH_
+#ifndef _PLANE_H_
+#define _PLANE_H_
 
-#include "SubPlane.hh"
+#include "SubPlane.h"
 
 template <class T>
 class Plane : public SubPlane<T> {
@@ -43,4 +43,4 @@ public:
 	}
 };
 
-#endif /* _PLANE_HH_ */
+#endif /* _PLANE_H_ */

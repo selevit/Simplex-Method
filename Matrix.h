@@ -1,10 +1,9 @@
-#ifndef _MATRIX_HH_
-#define _MATRIX_HH_
+#ifndef _MATRIX_H_
+#define _MATRIX_H_
 
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
-#include "Matrix.hh"
 
 #define err(no) std::cerr << "Oops! Something went wrong." << std::endl; exit(no);
 
@@ -47,4 +46,4 @@ void matrix<T>::operator=(matrix<T>& m)
 }
 
 
-#endif /* _MATRIX_HH_ */
+#endif /* _MATRIX_H_ */

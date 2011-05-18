@@ -5,8 +5,8 @@
 #include <iostream>
 
 #include "InputData.h"
-#include "Plane.hh"
-#include "SubPlane.hh"
+#include "Plane.h"
+#include "SubPlane.h"
 
 
 /*
