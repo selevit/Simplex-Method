@@ -17,7 +17,7 @@ void InputData::getAndSetInputData()
 	setFreeMembersOfSystem();
 }
 
-bool InputData::selectInputMethod()
+void InputData::selectInputMethod()
 {
 	int userInputMethod;
 	std::cout << "Выберите метод ввода (вручную - 1, из файла - 2): ";

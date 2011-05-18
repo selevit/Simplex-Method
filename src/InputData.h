@@ -26,7 +26,7 @@ class InputData {
 		 * выбора метода ввода (с клавиатуры и из файла).
 		*/
 		
-		bool selectInputMethod();
+		void selectInputMethod();
 		
 		/*
 		 * Данная функция задает име входного файла.

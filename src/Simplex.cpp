@@ -12,7 +12,7 @@
 
 
 
-bool Simplex::init()
+void Simplex::init()
 {
 	int i,j;	
 
@@ -321,7 +321,7 @@ void Simplex::setTargetFunction(int numOfIteration)
 		currentPlane->targetFunction -= ((A * B) / currentPlane->allowingMember);
 }
 
-bool Simplex::setThColumn ()
+void Simplex::setThColumn ()
 {
 	int i;
 	for (i = 0; i < numOfSourceVars; ++i)

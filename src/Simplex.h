@@ -24,7 +24,7 @@ class Simplex : public InputData  {
 		 * для первого опорного плана
 		*/
 
-		bool init();
+		void init();
 
 		/*
 		 * Данная функция задает значения для
@@ -86,7 +86,7 @@ class Simplex : public InputData  {
 		 * последнего столбца симплексной таблицы.
 		*/
 
-		bool setThColumn();
+		void setThColumn();
 
 		/*
 		 * Данная функция задает значение индекса ведущего
