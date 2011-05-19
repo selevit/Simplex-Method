@@ -56,10 +56,13 @@ int Simplex::setValues()
 
 	int i;
 	int numOfIteration = 1;
-	printOutData(numOfIteration);
-
-	while (!checkPlane() && checkThColumn()) 
+	while (true)
 	{
+		if (numOfIteration == 1) printCurrentAndAssignBest(numOfIteration);
+
+		if (!checkThColumn()) break;
+		if (numOfIteration != 1) printCurrentAndAssignBest(numOfIteration);
+		if (checkPlane()) break;
 		
 		++numOfIteration;
 		setTargetFunction(numOfIteration);
@@ -70,17 +73,20 @@ int Simplex::setValues()
 		setThColumn();
 		setIndexOfLeavingRow();
 		setAllowingMember();
-//		if (checkPlane() || !checkThColumn())
-//		{
-			printOutData(numOfIteration);
-//		}
-	
 	}	
 	
 
 	displayResult(numOfIteration);
 
 	return 0;
+}
+
+bool Simplex::printCurrentAndAssignBest(int numOfIteration)
+{
+	printOutData(numOfIteration);
+	*bestPlane = *currentPlane;
+	
+	return true;
 }
 
 bool Simplex::checkThColumn()
@@ -146,9 +152,9 @@ void Simplex::displayResult (int numOfIteration)
 	else
 		std::cout << "Целевая функция не ограничена. Задача с данным условием не имеет решений." << std::endl << std::endl;	
 	for (i = 0; i < numOfSourceVars; ++i)
-		std::cout << "X" << (*currentPlane->basisVars)[0][i] << " = " <<  (*currentPlane->basisVars)[1][i] << std::endl;	
+		std::cout << "X" << (*bestPlane->basisVars)[0][i] << " = " <<  (*bestPlane->basisVars)[1][i] << std::endl;	
 	std::cout << std::endl;
-	std::cout << "F(X) = " << currentPlane->targetFunction << std::endl << std::endl;
+	std::cout << "F(X) = " << bestPlane->targetFunction << std::endl << std::endl;
 }
 
 void Simplex::printOutData(int numOfIteration)

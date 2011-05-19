@@ -40,6 +40,8 @@ class Simplex : public InputData  {
 		 * Данная фукнция проверяет полученный план
 		 * на оптимальность.
 		*/
+
+		bool printCurrentAndAssignBest(int);
 		
 		bool checkThColumn();
 

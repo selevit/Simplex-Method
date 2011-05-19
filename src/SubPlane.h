@@ -26,12 +26,21 @@ public:
 
 	matrix<T>* varsFactors;
 
-	SubPlane(unsigned int vars)
+SubPlane(unsigned int _vars) : vars(_vars)
 	{
 		basisVars = new matrix<T>(2, vars);
 		varsFactors = new matrix<T>(vars, vars*2);
 		indexString = new double[vars*2];
 	}
+
+	void operator=(SubPlane<T>& sp)
+	{
+		memcpy(indexString, sp.indexString, vars*2*sizeof(double));
+		*basisVars = *sp.basisVars;
+		*varsFactors = *sp.varsFactors;
+	}
+private:
+	unsigned int vars;
 };
 
 #endif /* _SUBPLANE_H_ */

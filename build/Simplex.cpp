@@ -70,10 +70,14 @@ int Simplex::setValues()
 		setThColumn();
 		setIndexOfLeavingRow();
 		setAllowingMember();
-//		if (checkPlane() || !checkThColumn())
-//		{
+		/*
+		 * if (!checkThColumn())
+		{
+			bestPlane = currentPlane;
 			printOutData(numOfIteration);
-//		}
+			break;
+		}
+		*/
 	
 	}	
 	
@@ -96,7 +100,6 @@ bool Simplex::checkThColumn()
 			break;
 		}
 	}
-
 	return result;
 
 }
@@ -115,10 +118,10 @@ bool Simplex::checkPlane()
 				result = false;
 				break;
 			}
-//			else
-//			{
-//				bestPlane = currentPlane;
-//			}
+			else
+			{
+				bestPlane = currentPlane;
+			}
 		
 		else if (!wayOfTargetFunction)
 		
@@ -127,10 +130,10 @@ bool Simplex::checkPlane()
 				result = false;
 				break;
 			}
-//			else
-//			{
-//				bestPlane = currentPlane;
-//			}
+			else
+			{
+				bestPlane = currentPlane;
+			}
 	}
 	return result;
 }
