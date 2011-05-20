@@ -7,5 +7,5 @@ win32:
 clean:
 	rm -rf build/
 	cd src/ && make clean
-	# cd tests/ && make clean
+	cd tests/ && make clean
 all: default win32 test

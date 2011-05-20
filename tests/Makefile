@@ -1,3 +1,4 @@
 default:
 	./run-tests.bash
-# clean:
+clean:
+	./run-tests.bash clean

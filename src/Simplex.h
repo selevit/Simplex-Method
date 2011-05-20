@@ -6,7 +6,7 @@
 
 #include "InputData.h"
 #include "Plane.h"
-#include "SubPlane.h"
+// #include "SubPlane.h"
 
 
 /*
@@ -14,6 +14,8 @@
  * содержат все элементы симплекс таблицы, а функции
  * этого класса расчитывают оптимальный план задачи.
 */
+
+enum result { good_solution, bad_solution, no_solution };
 
 class Simplex : public InputData  {
 
@@ -34,7 +36,7 @@ class Simplex : public InputData  {
 		 * элементов текущего плана в симплекс таблице.
 		*/
 
-		int setValues();
+		void setValues();
 
 		/*
 		 * Данная фукнция проверяет полученный план
@@ -43,77 +45,79 @@ class Simplex : public InputData  {
 
 		bool printCurrentAndAssignBest(int);
 		
-		bool checkThColumn();
+		bool checkThColumn(Plane*);
 
-		bool checkPlane();
+		enum result checkPlane(Plane*);
 
 		/*
 		 * Данная функция задает значения базисных
 		 * переменных в симплекс таблице
 		*/
 
-		void setBasisVars(int numOfIteration);
+		void setBasisVars(Plane* source, Plane* target);
 
 		/*
 		 * Данная фукнция отображает решение задачи.
 		*/
 
-		void printOutData(int numOfIteration);
+		void dumpToTableTxt(Plane*, unsigned int iteration, enum result);
 
-		void displayResult(int numOfIteration);		
+		void displayResult(Plane*, unsigned int iteration, enum result);
 
 		/*
 		 * Данная функция задаен значения коэффициентов
 		 * при основных и базисных переменных в симплекс таблице.
 		*/
 		
-		void setFactorsOfVars(int numOfIteration);
+		void setFactorsOfVars(Plane* source, Plane*target);
 
 		/*
 		 * Данная фукнция задает значения коэффициетов
 		 * в индексной строке симплекс таблицы.
 		*/
 
-		void setIndexString(int numOfIteration);
+		void setIndexString(Plane* source, Plane* target);
 
 		/*
 		 * Данная функция задает значение фукнции
 		 * цели в симплекс таблице.
 		*/
 
-		void setTargetFunction(int numOfIteration);
+		void setTargetFunction(Plane* source, Plane* target);
 
 		/*
 		 * Данная функция задает значения коэффициентов
 		 * последнего столбца симплексной таблицы.
 		*/
 
-		void setThColumn();
+		void setThColumn(Plane*);
 
 		/*
 		 * Данная функция задает значение индекса ведущего
 		 * столбца текущего плана симплексной таблицы.
 		*/
 
-		void setIndexOfLeavingColumn();
+		void setIndexOfLeavingColumn(Plane*);
 
 		/*
 		 * Данная функция задает значение индекса ведущей
 		 * строки текущего плана симплексной таблицы.
 		*/
 
-		void setIndexOfLeavingRow();
+		void setIndexOfLeavingRow(Plane*);
 
 		/*
 		 * Данная функция находит значение
 		 * разрешающего элемента и возвращает его
 		*/
 
-		void setAllowingMember();
+		void setAllowingMember(Plane*);
 
-	private:
-		Plane<double> *currentPlane, *bestPlane;
-		SubPlane<double> *tmp;
+//	private:
+//		Plane<double> *currentPlane, *bestPlane;
+//		SubPlane<double> *tmp;
+private:
+		Plane *old_plane, *new_plane;
 };
 
 /*где-то в конце итерации

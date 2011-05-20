@@ -1,5 +1,7 @@
 Simplex
 TABLE.TXT
+table.txt
 *~
-win32
-win32/*
+build/
+tests/test*.table
+tests/test*.out

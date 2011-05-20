@@ -1,335 +1,311 @@
 #include <iostream>
-
 #include <fstream>
-
 #include <string>
-
 #include <sstream>
-
 #include <algorithm>
+#include <iomanip>
 
 #include "Simplex.h"
-
-
 
 void Simplex::init()
 {
 	int i,j;	
 
-	currentPlane = new Plane<double>(numOfSourceVars);
-	bestPlane = new Plane<double>(numOfSourceVars);
-	tmp = new SubPlane<double>(numOfSourceVars);
+	old_plane = new Plane(numOfSourceVars);
+	new_plane = new Plane(numOfSourceVars);
 
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		(*currentPlane->basisVars)[0][i] = numOfSourceVars + i + 1;
-		(*currentPlane->basisVars)[1][i] = freeMembersOfSystem[i];
+		(*new_plane->basisVars)[0][i] = numOfSourceVars + i + 1;
+		(*new_plane->basisVars)[1][i] = freeMembersOfSystem[i];
 	}
-	
-	for (i = 0; i < numOfSourceVars * 2; ++i)
-			currentPlane->indexString[i] = ((i < numOfSourceVars) ? -(factorsOfTargetFunctionVars [i]) : 0);
+
+	for (i = 0; i <numOfSourceVars; i++)
+		new_plane->indexString[i] = -factorsOfTargetFunctionVars[i];
+	for (; i < numOfSourceVars * 2; i++)
+		new_plane->indexString[i] = 0;
 
 	for  (i = 0; i < numOfSourceVars; ++i)
 	{
-		for(j = 0; j < numOfSourceVars * 2; ++j)
+		for (j = 0; j < numOfSourceVars; j++)
 		{
-			if (j < numOfSourceVars)
-				(*currentPlane->varsFactors)[i][j] = freeMembersOfSystem [i] < 0 ? factorsOfSystemVars [i][j] * -1 : factorsOfSystemVars[i][j];
-			else
-				(*currentPlane->varsFactors)[i][j] = i + numOfSourceVars == j;
+			(*new_plane->varsFactors)[i][j] = factorsOfSystemVars[i][j];
+		 	if (freeMembersOfSystem[i] < 0)
+				(*new_plane->varsFactors)[i][j] *= -1;
 		}
+		for (; j < numOfSourceVars*2; j++)
+			(*new_plane->varsFactors)[i][j] = i + numOfSourceVars == j;
 	}
 	
-	setIndexOfLeavingColumn();
+	setIndexOfLeavingColumn(new_plane);
 	
 	for (i = 0; i < numOfSourceVars; ++i)
-		currentPlane->thColumn[i] = (*currentPlane->basisVars)[1][i] / (*currentPlane->varsFactors)[i][currentPlane->indexOfLeavingColumn];
+		new_plane->thColumn[i] = (*new_plane->basisVars)[1][i] / (*new_plane->varsFactors)[i][new_plane->indexOfLeavingColumn];
 	
-	setIndexOfLeavingRow();
+	setIndexOfLeavingRow(new_plane);
 	
-	setAllowingMember();
+	setAllowingMember(new_plane);
 }
 
-
-int Simplex::setValues()
+void Simplex::setValues()
 {
 
-	int i;
-	int numOfIteration = 1;
-	while (true)
+	int i = 1;
+	Plane* t;
+	enum result r;
+
+	for (;;)
 	{
-		if (numOfIteration == 1) printCurrentAndAssignBest(numOfIteration);
-
-		if (!checkThColumn()) break;
-		if (numOfIteration != 1) printCurrentAndAssignBest(numOfIteration);
-		if (checkPlane()) break;
+		if(!checkThColumn(new_plane)) {
+			r = no_solution;
+			dumpToTableTxt(new_plane, i, r);
+			if (i == 1)
+				displayResult(new_plane, i, r);
+			else {
+				r = bad_solution;
+				displayResult(old_plane,i, r);
+			}
+			break;
+		}
+		r = checkPlane(new_plane);
+		dumpToTableTxt(new_plane, i, r);
+		if (r == good_solution) {
+			displayResult(new_plane, i, r);
+			break;
+		}
+		t = old_plane; old_plane = new_plane; new_plane = t;
 		
-		++numOfIteration;
-		setTargetFunction(numOfIteration);
-		setBasisVars(numOfIteration);
-		setIndexString(numOfIteration);
-		setFactorsOfVars(numOfIteration);
-		setIndexOfLeavingColumn();
-		setThColumn();
-		setIndexOfLeavingRow();
-		setAllowingMember();
+		++i;
+
+// =targetFunction; basisVars, indexOfLeavinRow, indexString, indexOfLeavingColumn, allowingMember
+		setTargetFunction(old_plane, new_plane);
+
+// =basisVars; indexOfLeavingRow, varsFactors, indexOfLeavingColumn, basisVars, allowingMember
+		setBasisVars(old_plane, new_plane);
+
+// =indexString; varsFactors, indexOfLeavingRow, indexOfLeavinColumn, indexString, allowingMember
+		setIndexString(old_plane, new_plane);
+
+// =varsFactors; varsFactors, indexOfLeavingRow, indexOfLeavingColumn, allowingMember
+		setFactorsOfVars(old_plane, new_plane);
+
+// =indexOfLeavingColumn; indexString
+		setIndexOfLeavingColumn(new_plane);
+
+// =thColumn; basisVars, varsFactors, indexOfLeavingColumn
+		setThColumn(new_plane);
+
+// =indexOfLeavingRow; thColumn
+		setIndexOfLeavingRow(new_plane);
+
+// =allowingMember; varsFactors, indexOfLeavingRow, indexOfLeavingColumn
+		setAllowingMember(new_plane);
 	}	
-	
-
-	displayResult(numOfIteration);
-
-	return 0;
 }
 
-bool Simplex::printCurrentAndAssignBest(int numOfIteration)
+bool Simplex::checkThColumn(Plane* p)
 {
-	printOutData(numOfIteration);
-	*bestPlane = *currentPlane;
-	
+	for (int i = 0; i < numOfSourceVars; ++i)
+		if (p->thColumn[i] <= 0)
+			return false;
+
 	return true;
 }
 
-bool Simplex::checkThColumn()
+enum result Simplex::checkPlane(Plane* p)
 {
 	int i;
-	bool result = true;
-
+	
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		if (currentPlane->thColumn [i] <= 0)
-		{
-			result = false;
-			break;
+		if (wayOfTargetFunction) {
+			if (p->indexString[i] < 0) return bad_solution;
+		} else {
+			if (p->indexString[i] >= 0) return bad_solution;
 		}
 	}
-
-	return result;
-
+	return good_solution;
 }
 
-bool Simplex::checkPlane()
+void Simplex::displayResult(Plane* p, unsigned int iteration, enum result r)
 {
 	int i;
-	bool result = true; 
-	
-	for (i = 0; i < numOfSourceVars; ++i)
-	{
-		if (wayOfTargetFunction)
 
-			if (currentPlane->indexString[i] < 0)
-			{
-				result = false;
-				break;
-			}
-//			else
-//			{
-//				bestPlane = currentPlane;
-//			}
-		
-		else if (!wayOfTargetFunction)
-		
-			if (currentPlane->indexString[i] >= 0)
-			{
-				result = false;
-				break;
-			}
-//			else
-//			{
-//				bestPlane = currentPlane;
-//			}
+	std::stringstream out; out << "\n\n";
+	switch(r)
+	{
+	case good_solution:
+		out << "Оптимальный план найден. Количество итераций = " << iteration;
+		break;
+	case no_solution:
+		out << "Целевая функция не ограничена. Задача с данным условием не имеет решений.";
+		break;
+	case bad_solution:
+		out << "Данная задача имеет решение, но оно не является оптимальным.";	
+		break;
 	}
-	return result;
+	out << "\n\n";
+	for (i = 0; i < numOfSourceVars; i++)
+		out << "x" << (*p->basisVars)[0][i] << " = " << (*p->basisVars)[1][i] << "\n";
+	out << "\n\nf(x) = " << p->targetFunction << "\n";
+
+	std::cout << out.str() << std::endl;
 }
 
-void Simplex::displayResult (int numOfIteration)
+void Simplex::dumpToTableTxt(Plane* p, unsigned int iteration, enum result r)
 {
 	int i, j;
-	std::cout << std::endl << std::endl;
-	if (checkPlane() && checkThColumn())
-		std::cout << "Оптимальный план найден. Количество итераций = " << numOfIteration << std::endl << std::endl;
-	else if (!checkPlane() && checkThColumn())
-		std::cout << "Данная задача имеет одно единственное решение, но оно не является оптимальным.\nЭтим решением является первый опорный план задачи." << std::endl << std::endl;
-	else
-		std::cout << "Целевая функция не ограничена. Задача с данным условием не имеет решений." << std::endl << std::endl;	
-	for (i = 0; i < numOfSourceVars; ++i)
-		std::cout << "X" << (*bestPlane->basisVars)[0][i] << " = " <<  (*bestPlane->basisVars)[1][i] << std::endl;	
-	std::cout << std::endl;
-	std::cout << "F(X) = " << bestPlane->targetFunction << std::endl << std::endl;
-}
+	static std::ofstream file("table.txt");
+	std::stringstream buf;
 
-void Simplex::printOutData(int numOfIteration)
-{
-
-	int i, j;
-
-	std::stringstream printResult;
-
-	std::stringstream outVar;
-	
+	buf << "Задана целевая функция: f(x) = ";	
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-			if (factorsOfTargetFunctionVars[i] > 0)
-				if (i)
-					outVar << " + " << factorsOfTargetFunctionVars[i] << "X" <<  i + 1;
-				else
-					outVar << factorsOfTargetFunctionVars[i] << "X" <<  i + 1;
-					
-			else if (factorsOfTargetFunctionVars < 0)
-				outVar << factorsOfTargetFunctionVars[i]  <<  "X" << i + 1;
-
+		if (factorsOfTargetFunctionVars[i] > 0 && i)
+			buf << " + ";
+		buf << factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
 	}
-	printResult << "Задана целевая функция: F(X) = " << outVar.str();
 
-	printResult << std::endl << std::endl;
-	printResult <<  numOfIteration << "-й план " << std::endl << std::endl;
-	
+	buf << "\n\n";
+	buf << iteration << "-й план \n\n";
 
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		printResult << "X" << (*currentPlane->basisVars)[0][i] << "		";
-		printResult <<  (*currentPlane->basisVars)[1][i] << "		";
+		buf << "x" << std::setw(3) << std::left << (*p->basisVars)[0][i] << "\t";
+		buf << std::setw(5) << (*p->basisVars)[1][i] << "\t";
 		for (j = 0; j < numOfSourceVars * 2; ++j)
 		{
-			printResult << (*currentPlane->varsFactors)[i][j] << "	";			
+			buf << std::setw(7) << (*p->varsFactors)[i][j] << "	";
 		}
-		if (!checkPlane())
-			printResult << "	" <<  currentPlane->thColumn [i];
-		printResult << std::endl << std::endl;
+		if (r == bad_solution)
+			buf <<  p->thColumn [i];
+		buf << "\n\n";
 	}
 
-	printResult << "F(X)		";
-
-	printResult << currentPlane->targetFunction << "		";
+	buf << "f(x)\t" << std::setw(5) << p->targetFunction << "\t";
 	
 	for (i = 0; i < numOfSourceVars * 2; ++i)
 	{
-		printResult << currentPlane->indexString [i] << "	";
+		buf << std::setw(7) << p->indexString[i] << "\t";
 	}
-	printResult << std::endl << std::endl;
+	buf << "\n\n";
 
-	if (!checkPlane())
-		printResult << "Данный план не оптимален, его необходимо улучшить." << std::endl << std::endl;
+	switch(r) {
+	case bad_solution:
+		buf << "Данный план не оптимален, его необходимо улучшить.";
+		break;
+	case good_solution:
+		buf << "Данный план является оптимальным. Решение найдено.";
+		break;
+	case no_solution:
+		buf << "Решения нет.";
+		break;
+	}
 
-	else
-		printResult << "Данный план является оптимальным. Решение найдено." << std::endl << std::endl;
+	buf << "\n\n\n";
 
-	printResult << std::endl;
-
-	std::ofstream outFile ("TABLE.TXT", std::ios::app);
-
-	outFile << printResult.str();
+	file << buf.str() << std::flush;
 }
 
-void Simplex::setIndexOfLeavingColumn()
+void Simplex::setIndexOfLeavingColumn(Plane* p)
+{
+	int i;
+	double minOfIndexString = p->indexString[0];
+
+	p->indexOfLeavingColumn = 0;
+	for (i = 0; i < numOfSourceVars * 2; ++i)
+	{
+		if (p->indexString[i] < 0 && minOfIndexString > p->indexString[i])
+		{
+			minOfIndexString = p->indexString[i];
+			p->indexOfLeavingColumn = i;
+		}
+	}
+}
+
+void Simplex::setIndexOfLeavingRow(Plane* p)
+{
+	int i;
+	double minOfThColumn = p->thColumn[0];
+
+	p->indexOfLeavingRow = 0;
+	for (i = 0; i < numOfSourceVars; ++i)
+	{
+		if (minOfThColumn > p->thColumn[i])
+		{
+			minOfThColumn = p->thColumn[i];
+			p->indexOfLeavingRow = i;
+		}
+	}
+}
+
+void Simplex::setAllowingMember(Plane* p)
+{
+	p->allowingMember = (*p->varsFactors)[p->indexOfLeavingRow][p->indexOfLeavingColumn];
+}
+
+void Simplex::setBasisVars(Plane* source, Plane* target)
+{
+		int i;
+		double A = (*source->basisVars)[1][source->indexOfLeavingRow];
+		double B;
+
+		for (i = 0; i < numOfSourceVars; ++i)
+		{
+			if (i == source->indexOfLeavingRow) {
+				(*target->basisVars)[0][source->indexOfLeavingRow] = source->indexOfLeavingColumn + 1;
+				(*target->basisVars)[1][i] = (*source->basisVars)[1][i] / source->allowingMember;
+			} else {
+				(*target->basisVars)[0][i] = (*source->basisVars)[0][i];
+				B = (*source->varsFactors)[i][source->indexOfLeavingColumn];
+				(*target->basisVars)[1][i] = (*source->basisVars)[1][i] - ((A * B) / source->allowingMember);
+			}
+		}
+}
+
+void Simplex::setFactorsOfVars(Plane* source, Plane* target)
 {
 	int i, j;
-	double minOfIndexString = currentPlane->indexString[0];
-	int indexOfMin = 0;
-	for (i = 0; i < numOfSourceVars * 2; ++i)
-	{
+	double A, B;
 
-		if (currentPlane->indexString[i] < 0 && minOfIndexString > currentPlane->indexString[i])
-		{
-			minOfIndexString = currentPlane->indexString [i];
-			indexOfMin = i;
-		}
-
-	}
-	currentPlane->indexOfLeavingColumn = indexOfMin;
-}
-
-void Simplex::setIndexOfLeavingRow()
-{
-	int i;
-	double minOfThColumn = currentPlane->thColumn [0];
-	int indexOfMin = 0;
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		if (minOfThColumn > currentPlane->thColumn [i])
+		for (j = 0; j < numOfSourceVars * 2; ++j)
 		{
-			minOfThColumn = currentPlane->thColumn [i];
-			indexOfMin = i;
+			if (i == source->indexOfLeavingRow) {
+				(*target->varsFactors)[i][j] = (*source->varsFactors)[i][j] / source->allowingMember;
+			} else {
+				A = (*source->varsFactors)[source->indexOfLeavingRow][j];
+				B = (*source->varsFactors)[i][source->indexOfLeavingColumn];
+				(*target->varsFactors)[i][j] = (*source->varsFactors)[i][j] - ((A * B) / source->allowingMember);
+			}
 		}
 	}
-	currentPlane->indexOfLeavingRow = indexOfMin;
 }
 
-void Simplex::setAllowingMember()
-{
-	currentPlane->allowingMember = (*currentPlane->varsFactors)[currentPlane->indexOfLeavingRow][currentPlane->indexOfLeavingColumn];
-}
-
-void Simplex::setBasisVars(int numOfIteration)
-{
-		int i;
-
-		double A = (*currentPlane->basisVars)[1][currentPlane->indexOfLeavingRow];
-		double B;
-		for (i = 0; i < numOfSourceVars; ++i)
-		{
-			B = (*currentPlane->varsFactors)[i][currentPlane->indexOfLeavingColumn];
-			(*tmp->basisVars)[1][i] = (*currentPlane->basisVars)[1][i];
-			if (i == currentPlane->indexOfLeavingRow) {
-				(*tmp->basisVars)[1][i] /= currentPlane->allowingMember;
-			} else {
-				(*tmp->basisVars)[1][i] = (*currentPlane->basisVars)[1][i] - ((A * B) / currentPlane->allowingMember);
-			}
-		}
-
-		memcpy((*currentPlane->basisVars)[1], (*tmp->basisVars)[1], numOfSourceVars*sizeof(double));
-
-		(*currentPlane->basisVars)[0][currentPlane->indexOfLeavingRow] = currentPlane->indexOfLeavingColumn + 1;
-}	
-
-void Simplex::setFactorsOfVars(int numOfIteration)
-{
-		int i, j;
-		double A, B;
-	
-		for (i = 0; i < numOfSourceVars; ++i)
-		{
-			for (j = 0; j < numOfSourceVars * 2; ++j)
-			{ 
-				(*tmp->varsFactors)[i][j] = (*currentPlane->varsFactors)[i][j];
-				A = (*currentPlane->varsFactors)[currentPlane->indexOfLeavingRow][j];
-				B = (*currentPlane->varsFactors)[i][currentPlane->indexOfLeavingColumn];
-				if (i == currentPlane->indexOfLeavingRow) {
-					(*tmp->varsFactors)[i][j] /= currentPlane->allowingMember;
-				} else {
-					(*tmp->varsFactors)[i][j] = (*currentPlane->varsFactors)[i][j] - ((A * B) / currentPlane->allowingMember);
-				}
-
-			}
-		}
-		(*currentPlane->varsFactors) = (*tmp->varsFactors);
-}
-
-
-void Simplex::setIndexString (int numOfIteration)
+void Simplex::setIndexString(Plane* source, Plane* target)
 {
 		int i;
 		double A, B;
+
 		for (i = 0; i < numOfSourceVars * 2; ++i)
 		{
-			A = (*currentPlane->varsFactors)[currentPlane->indexOfLeavingRow][i];
-			B = currentPlane->indexString [currentPlane->indexOfLeavingColumn];
-			tmp->indexString [i] = currentPlane->indexString [i];
-			tmp->indexString [i] = currentPlane->indexString [i] - ((A * B) / currentPlane->allowingMember);
+			A = (*source->varsFactors)[source->indexOfLeavingRow][i];
+			B = source->indexString[source->indexOfLeavingColumn];
+			target->indexString[i] = source->indexString[i] - ((A * B) / source->allowingMember);
 		}
-		
-		memcpy(currentPlane->indexString, tmp->indexString, numOfSourceVars*2*sizeof(double));
 }
 
-void Simplex::setTargetFunction(int numOfIteration)
+void Simplex::setTargetFunction(Plane* source, Plane* target)
 {
-		double A = (*currentPlane->basisVars)[1][currentPlane->indexOfLeavingRow];
-		double B = currentPlane->indexString[currentPlane->indexOfLeavingColumn];
-		currentPlane->targetFunction -= ((A * B) / currentPlane->allowingMember);
+		double A = (*source->basisVars)[1][source->indexOfLeavingRow];
+		double B = source->indexString[source->indexOfLeavingColumn];
+
+		target->targetFunction = source->targetFunction - ((A * B) / source->allowingMember);
 }
 
-void Simplex::setThColumn ()
+void Simplex::setThColumn (Plane* p)
 {
-	int i;
-	for (i = 0; i < numOfSourceVars; ++i)
-		currentPlane->thColumn [i] = (*currentPlane->basisVars)[1][i] / (*currentPlane->varsFactors)[i][currentPlane->indexOfLeavingColumn];
+	for (int i = 0; i < numOfSourceVars; ++i)
+		p->thColumn[i] = (*p->basisVars)[1][i] / (*p->varsFactors)[i][p->indexOfLeavingColumn];
 }

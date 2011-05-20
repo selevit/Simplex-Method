@@ -3,7 +3,6 @@
 
 #include "Matrix.h"
 
-template <class T>
 class SubPlane {
 public:
 	/*
@@ -17,23 +16,23 @@ public:
 	 * в симплекс теблице.
 	*/
 
-	matrix<T>* basisVars;
+	matrix* basisVars;
 
 	/*
 	 * Коэффициенты при  переменных
 	 * в симплекс-таблице.
 	*/
 
-	matrix<T>* varsFactors;
+	matrix* varsFactors;
 
 SubPlane(unsigned int _vars) : vars(_vars)
 	{
-		basisVars = new matrix<T>(2, vars);
-		varsFactors = new matrix<T>(vars, vars*2);
+		basisVars = new matrix(2, vars);
+		varsFactors = new matrix(vars, vars*2);
 		indexString = new double[vars*2];
 	}
 
-	void operator=(SubPlane<T>& sp)
+	void operator=(SubPlane& sp)
 	{
 		memcpy(indexString, sp.indexString, vars*2*sizeof(double));
 		*basisVars = *sp.basisVars;
