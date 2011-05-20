@@ -35,8 +35,7 @@ public:
 
 	double allowingMember;
 
-Plane(unsigned int vars) : SubPlane(vars)
-	{
+Plane(unsigned int vars) : SubPlane(vars) {
 		thColumn = new double[vars];
 		targetFunction = 0;
 	}

@@ -25,8 +25,7 @@ public:
 
 	matrix* varsFactors;
 
-SubPlane(unsigned int vars)
-	{
+SubPlane(unsigned int vars) {
 		basisVars = new matrix(2, vars);
 		varsFactors = new matrix(vars, vars*2);
 		indexString = new double[vars*2];

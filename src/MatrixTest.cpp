@@ -1,8 +1,7 @@
 #include <iostream>
 #include "Matrix.h"
 
-int main()
-{
+int main() {
 	using namespace std;
 
 	matrix<int> m(1,5);

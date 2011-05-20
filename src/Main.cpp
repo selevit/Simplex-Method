@@ -13,12 +13,11 @@
 #include <iostream>
 
 #include "InputData.h"
-
 #include "Simplex.h"
 
 
-int main()
-{
+int main() {
+	
 	/*
 	 * Поскольку я программирую под Gentoo Linux x86_64
 	 * и использую компилятор GCC-4.5.2,
@@ -27,10 +26,13 @@ int main()
 	 * будет проверяться преподавателем под Windows в среде
 	 * Visual Studio 2008, я задаю русскую локаль по умолчанию.
 	 */
+
 	setlocale(LC_ALL, "Russian");
+	
 	Simplex s;
 	s.getAndSetInputData();  
 	s.init();
 	s.setValues();
+
 	return 0;
 }

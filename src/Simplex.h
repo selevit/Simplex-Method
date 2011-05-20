@@ -15,7 +15,9 @@
  * этого класса расчитывают оптимальный план задачи.
 */
 
-enum result { good_solution, bad_solution, no_solution };
+enum result {
+	good_solution, bad_solution, no_solution 
+};
 
 class Simplex : public InputData  {
 
@@ -43,8 +45,6 @@ class Simplex : public InputData  {
 		 * на оптимальность.
 		*/
 
-		bool printCurrentAndAssignBest(int);
-		
 		bool checkThColumn(Plane*);
 
 		enum result checkPlane(Plane*);
