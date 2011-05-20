@@ -76,29 +76,13 @@ void Simplex::setValues()
 		t = old_plane; old_plane = new_plane; new_plane = t;
 		
 		++i;
-
-// =targetFunction; basisVars, indexOfLeavinRow, indexString, indexOfLeavingColumn, allowingMember
 		setTargetFunction(old_plane, new_plane);
-
-// =basisVars; indexOfLeavingRow, varsFactors, indexOfLeavingColumn, basisVars, allowingMember
 		setBasisVars(old_plane, new_plane);
-
-// =indexString; varsFactors, indexOfLeavingRow, indexOfLeavinColumn, indexString, allowingMember
 		setIndexString(old_plane, new_plane);
-
-// =varsFactors; varsFactors, indexOfLeavingRow, indexOfLeavingColumn, allowingMember
 		setFactorsOfVars(old_plane, new_plane);
-
-// =indexOfLeavingColumn; indexString
 		setIndexOfLeavingColumn(new_plane);
-
-// =thColumn; basisVars, varsFactors, indexOfLeavingColumn
 		setThColumn(new_plane);
-
-// =indexOfLeavingRow; thColumn
 		setIndexOfLeavingRow(new_plane);
-
-// =allowingMember; varsFactors, indexOfLeavingRow, indexOfLeavingColumn
 		setAllowingMember(new_plane);
 	}	
 }
