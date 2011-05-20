@@ -133,7 +133,7 @@ void Simplex::displayResult(Plane* p, unsigned int iteration, enum result r)
 		out << "x" << (*p->basisVars)[0][i] << " = " << (*p->basisVars)[1][i] << "\n";
 	out << "\n\nf(x) = " << p->targetFunction << "\n";
 
-	std::cout << out.str() << std::endl;
+	std::cout << out.str() << std::flush;
 }
 
 void Simplex::dumpToTableTxt(Plane* p, unsigned int iteration, enum result r)
