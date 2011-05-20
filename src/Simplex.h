@@ -113,22 +113,8 @@ class Simplex : public InputData  {
 
 		void setAllowingMember(Plane*);
 
-//	private:
-//		Plane<double> *currentPlane, *bestPlane;
-//		SubPlane<double> *tmp;
 private:
 		Plane *old_plane, *new_plane;
 };
-
-/*где-то в конце итерации
-
-if (error() || finished()) {
-	print(best);
-}
-if (better(current, best)) {
-	best = current;
-}
-*/
-
 
 #endif
