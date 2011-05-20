@@ -63,7 +63,7 @@ void Simplex::setValues()
 				displayResult(new_plane, i, r);
 			else {
 				r = bad_solution;
-				displayResult(old_plane,i, r);
+				displayResult(old_plane, i, r);
 			}
 			break;
 		}

@@ -10,12 +10,11 @@
 class matrix {
 	private:
 		double *buf;
-		unsigned int x, y, size;
+		unsigned int x, y;
 	public:
 		matrix(unsigned int _x, unsigned int _y);
 		~matrix();
 		double* operator[](unsigned int i);
-		void operator=(matrix& m);
 };
 
 #endif /* _MATRIX_H_ */

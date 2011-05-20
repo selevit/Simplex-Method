@@ -35,23 +35,11 @@ public:
 
 	double allowingMember;
 
-Plane(unsigned int _vars) : SubPlane(_vars), vars(_vars)
+Plane(unsigned int vars) : SubPlane(vars)
 	{
 		thColumn = new double[vars];
 		targetFunction = 0;
 	}
-
-	void operator=(Plane& p)
-	{
-		targetFunction = p.targetFunction;
-		memcpy(thColumn, p.thColumn, vars*sizeof(double));
-		indexOfLeavingRow = p.indexOfLeavingRow;
-		indexOfLeavingColumn = p.indexOfLeavingColumn;
-		allowingMember = p.allowingMember;
-		SubPlane::operator=(p);
-	}
-private:
-	unsigned int vars;
 };
 
 #endif /* _PLANE_H_ */
