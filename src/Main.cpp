@@ -7,28 +7,20 @@
  * колледжа кафедры Программного обеспечения
  * вычислительной техники и автоматизированных
  * систем группы ВТ-3-1 В учебный период
- * 2010 - 2011 г. Все права защищены.
  */ 
-
-#include <iostream>
-
-#include "InputData.h"
 
 #include "Simplex.h"
 
 
-int main()
+int main(int argc, char* argv[])
 {
-	/*
-	 * Поскольку я программирую под Gentoo Linux x86_64
-	 * и использую компилятор GCC-4.5.2,
-	 * у меня не возникает проблем с кодировками, т.к.
-	 * по умолчанию везде юникод. но, так как это задание
-	 * будет проверяться преподавателем под Windows в среде
-	 * Visual Studio 2008, я задаю русскую локаль по умолчанию.
-	 */
-	setlocale(LC_ALL, "Russian");
 	Simplex s;
+	if (argc > 1 && !strcmp("-t", argv[1])) {
+		s.input_interactive = false;
+#ifdef _WIN32
+		s.use_cp866 = false;
+#endif
+	}
 	s.getAndSetInputData();  
 	s.init();
 	s.setValues();
