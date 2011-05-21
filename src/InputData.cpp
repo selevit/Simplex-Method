@@ -4,7 +4,6 @@
 #include "InputData.h"
 
 void InputData::getAndSetInputData() {
-	selectInputMethod();
 	setInputFile();
 	setNumOfSourceVars();
 	setFactorsOfTargetFunctionVars();

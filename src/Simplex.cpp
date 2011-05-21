@@ -49,7 +49,7 @@ void Simplex::setValues() {
 	enum result r;
 
 	for (;;) {
-		if(!checkThColumn(new_plane)) {
+		if(!checkThColumn(old_plane)) {
 			r = no_solution;
 			dumpToTableTxt(new_plane, i, r);
 			if (i == 1)
@@ -85,7 +85,7 @@ void Simplex::setValues() {
 
 bool Simplex::checkThColumn(Plane* p) {
 	for (int i = 0; i < numOfSourceVars; ++i)
-		if (p->thColumn[i] <= 0)
+		if (p->thColumn[i] < 0)
 			return false;
 	return true;
 }
