@@ -99,11 +99,10 @@ enum result Simplex::checkPlane(Plane* p) {
 
 void Simplex::displayResult(Plane* p, unsigned int iteration, enum result r) {
 	int i;
-
-	std::stringstream out; out << "\n\n";
+	std::stringstream out;
 
 	if (r == good_solution) {
-		out << "Оптимальный план найден. Количество итераций = " << iteration << "\n\n";
+		out << "\n\nОптимальный план найден. Количество итераций = " << iteration << "\n\n";
 		for (i = 0; i < numOfSourceVars; i++)
 			out << "x" << (*p->basisVars)[0][i] << " = " << (*p->basisVars)[1][i] << "\n";
 		out << "\n\nf(x) = " << p->targetFunction << "\n";
