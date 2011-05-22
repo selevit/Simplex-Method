@@ -102,21 +102,15 @@ void Simplex::displayResult(Plane* p, unsigned int iteration, enum result r) {
 
 	std::stringstream out; out << "\n\n";
 
-	switch(r) {
-	case good_solution:
-		out << "Оптимальный план найден. Количество итераций = " << iteration;
-		break;
-	case no_solution:
-		std::cout << out.str() << "Целевая функция не ограничена. Задача с данным условием не имеет решений.\n" << std::flush;
-		return;
-	default:
-		break;
+	if (r == good_solution) {
+		out << "Оптимальный план найден. Количество итераций = " << iteration << "\n\n";
+		for (i = 0; i < numOfSourceVars; i++)
+			out << "x" << (*p->basisVars)[0][i] << " = " << (*p->basisVars)[1][i] << "\n";
+		out << "\n\nf(x) = " << p->targetFunction << "\n";
 	}
-	out << "\n\n";
-	for (i = 0; i < numOfSourceVars; i++)
-		out << "x" << (*p->basisVars)[0][i] << " = " << (*p->basisVars)[1][i] << "\n";
 
-	out << "\n\nf(x) = " << p->targetFunction << "\n";
+	if (r == no_solution)
+		out << "Целевая функция не ограничена. Задача с данным условием не имеет решений.\n";
 
 	std::cout << out.str() << std::flush;
 }
