@@ -49,28 +49,22 @@ void Simplex::setValues() {
 	enum result r;
 
 	for (;;) {
-		if(!checkThColumn(old_plane)) {
-			r = no_solution;
+		if (good_solution == (r = checkPlane(new_plane))) {
 			dumpToTableTxt(new_plane, i, r);
-			if (i == 1)
-				displayResult(new_plane, i, r);
-			else {
-				r = bad_solution;
-				displayResult(old_plane, i, r);
-			}
-			break;
-		}
-		r = checkPlane(new_plane);
-		dumpToTableTxt(new_plane, i, r);
-
-		if (r == good_solution) {
 			displayResult(new_plane, i, r);
 			break;
+		} else {
+			if(!checkThColumn(new_plane)) {
+				r = no_solution;
+				dumpToTableTxt(new_plane, i, r);
+				displayResult(new_plane, i, r);
+				break;
+			}
+			dumpToTableTxt(new_plane, i, r);
 		}
 
-		t = old_plane; old_plane = new_plane; new_plane = t;
-
 		++i;
+		t = old_plane; old_plane = new_plane; new_plane = t;
 
 		setTargetFunction(old_plane, new_plane);
 		setBasisVars(old_plane, new_plane);
@@ -113,10 +107,9 @@ void Simplex::displayResult(Plane* p, unsigned int iteration, enum result r) {
 		out << "Оптимальный план найден. Количество итераций = " << iteration;
 		break;
 	case no_solution:
-		out << "Целевая функция не ограничена. Задача с данным условием не имеет решений.";
-		break;
-	case bad_solution:
-		out << "Данная задача имеет решение, но оно не является оптимальным.";	
+		std::cout << out.str() << "Целевая функция не ограничена. Задача с данным условием не имеет решений.\n" << std::flush;
+		return;
+	default:
 		break;
 	}
 	out << "\n\n";
@@ -168,7 +161,7 @@ void Simplex::dumpToTableTxt(Plane* p, unsigned int iteration, enum result r) {
 		buf << "Данный план является оптимальным. Решение найдено.";
 		break;
 	case no_solution:
-		buf << "Решения нет.";
+		buf << "Целевая функция не ограничена, данная задача не имеет решения.";
 		break;
 	}
 
