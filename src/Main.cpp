@@ -11,7 +11,6 @@
 
 #include "Simplex.h"
 
-
 int main(int argc, char* argv[])
 {
 	Simplex s;

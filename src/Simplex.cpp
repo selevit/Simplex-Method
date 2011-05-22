@@ -11,17 +11,17 @@ void Simplex::init()
 {
 	int i,j;	
 
-	old_plane = user_input;
+	old_plane = new Plane(numOfSourceVars);;
 	new_plane = new Plane(numOfSourceVars);
 
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
 		(*new_plane->basisVars)[0][i] = numOfSourceVars + i + 1;
-		(*new_plane->basisVars)[1][i] = user_input->basisVars[i];
+		(*new_plane->basisVars)[1][i] = user_data->freeMembersOfSystem[i];
 	}
 
 	for (i = 0; i <numOfSourceVars; i++)
-		new_plane->indexString[i] = -user_input->indexString[i];
+		new_plane->indexString[i] = -user_data->factorsOfTargetFunctionVars[i];
 	for (; i < numOfSourceVars * 2; i++)
 		new_plane->indexString[i] = 0;
 
@@ -29,14 +29,15 @@ void Simplex::init()
 	{
 		for (j = 0; j < numOfSourceVars; j++)
 		{
-			(*new_plane->varsFactors)[i][j] = (*user_input->varsFactors)[i][j];
-		 	if ((*user_input->basisVars)[i] < 0)
+			// TODO: Это можно сделать без копирования
+			(*new_plane->varsFactors)[i][j] = (*user_data->factorsOfSystemVars)[i][j];
+		 	if (user_data->freeMembersOfSystem[i] < 0)
 				(*new_plane->varsFactors)[i][j] *= -1;
 		}
 		for (; j < numOfSourceVars*2; j++)
 			(*new_plane->varsFactors)[i][j] = i + numOfSourceVars == j;
 	}
-	
+
 	setIndexOfLeavingColumn(new_plane);
 	
 	for (i = 0; i < numOfSourceVars; ++i)
@@ -145,9 +146,9 @@ void Simplex::dumpToTableTxt(Plane* p, unsigned int iteration, enum result r)
 	buf << "Задана целевая функция: f(x) = ";	
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		if (factorsOfTargetFunctionVars[i] > 0 && i)
+		if (user_data->factorsOfTargetFunctionVars[i] > 0 && i)
 			buf << " + ";
-		buf << factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
+		buf << user_data->factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
 	}
 
 	buf << "\n\n";

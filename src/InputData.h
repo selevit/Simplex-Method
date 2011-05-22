@@ -18,9 +18,10 @@
 #define _SOURCE_DATA_H_ 1
 
 #include "Plane.h"
-#include "Functions.h"
+#include "Out.h"
+#include "UserData.h"
 
-class InputData : public virtual Functions {
+class InputData {
 
 	public:
 	bool input_interactive;
@@ -79,7 +80,7 @@ InputData() : input_interactive(true) {};
 		 * и возвращает это значение.
 		*/
 
-		int getNumOfSourceVars();
+		void getNumOfSourceVars();
 
 		/*
 		 * Данная функция задает закрытому члену класса
@@ -88,7 +89,7 @@ InputData() : input_interactive(true) {};
 		 * getNumOfSourceVars()/
 		*/
 
-		bool setNumOfSourceVars();
+		void setNumOfSourceVars();
 
 		/*
 		 * Данная функция принимает значение
@@ -105,14 +106,7 @@ InputData() : input_interactive(true) {};
 
 	protected:
 	
-		Plane* user_input;
-
-		/*
-		 * Количество исходных переменных
-		 * целевой функции и системы неравенств
-		*/
-
-		int numOfSourceVars; 
+		UserData* user_data;
 	
 		/*
 		 * Направление целевой функции
@@ -120,5 +114,12 @@ InputData() : input_interactive(true) {};
 		*/
 
 		bool wayOfTargetFunction;
+
+		/*
+		 * Количество исходных переменных
+		 * целевой функции и системы неравенств
+		*/
+
+		int numOfSourceVars; 
 };
 #endif

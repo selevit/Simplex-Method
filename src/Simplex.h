@@ -1,7 +1,7 @@
 #ifndef _SIMPLEX_H_
 #define _SIMPLEX_H_ 1
 
-#include "Functions.h"
+#include "Out.h"
 #include "InputData.h"
 #include "Plane.h"
 
@@ -13,7 +13,7 @@
 
 enum result { good_solution, bad_solution, no_solution };
 
-class Simplex : public InputData, public virtual Functions {
+class Simplex : public InputData {
 
 	public:
 		
