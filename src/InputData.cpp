@@ -3,29 +3,33 @@
 #include <string>
 
 #include "InputData.h"
+#include "Out.h"
 
 void InputData::getAndSetInputData()
 {
+	if (!input_interactive)
+		_out.can_output = false;
+
 	setNumOfSourceVars();
 	user_data = new UserData(numOfSourceVars);
 	setFactorsOfTargetFunctionVars();
 	setWayOfTargetFunction();
 	setFactorsOfSystemVars();
 	setFreeMembersOfSystem();
+
+	if (!input_interactive)
+		_out.can_output = true;
 }
 
 void InputData::setFreeMembersOfSystem()
 {
-	int i;
-
-	for (i = 0; i < numOfSourceVars; ++i)
+	for (int i = 0; i < numOfSourceVars; ++i)
 	{
-		if (input_interactive)
-			out << "Введите значение свободного члена для " << i + 1 << "-го неравенства: ";
+		_out << std::cout << "Введите значение свободного члена для " << i + 1 << "-го неравенства: ";
+// TODO: вот это сегфолтнется, если долбоюзер введёт букву
 		std::cin >> user_data->freeMembersOfSystem[i];
 	}
-	if (input_interactive)
-		std::cout << "\n";
+	_out << std::cout << "\n";
 }
 
 void InputData::setFactorsOfSystemVars()
@@ -36,52 +40,46 @@ void InputData::setFactorsOfSystemVars()
 	{
 		for (j = 0; j < numOfSourceVars; ++j)
 		{
-			if (input_interactive)
-				out << "Введите коэффициент при X" << j + 1 << " для " << i + 1 << "-го неравенства: ";
+			_out << std::cout << "Введите коэффициент при X" << j + 1 << " для " << i + 1 << "-го неравенства: ";
+// аналогично
 			std::cin >> (*user_data->factorsOfSystemVars)[i][j];
 		}
-		if (input_interactive)
-			std::cout << "\n";
+		_out << std::cout << "\n";
 	}
 }
 
 void InputData::setFactorsOfTargetFunctionVars()
 {
-	if (input_interactive)
-		std::cout << "\n";
+	_out << std::cout << "\n";
 	for (int i = 0; i < numOfSourceVars; ++i)
 	{
-		if (input_interactive)
-			out << "Введите коэффициент целевой функции при X" << i + 1 << ": ";
+		_out << std::cout << "Введите коэффициент целевой функции при X" << i + 1 << ": ";
+// аналогично
 		std::cin >> user_data->factorsOfTargetFunctionVars[i];
 	}
-	if (input_interactive)
-		std::cout << "\n";
+	_out << std::cout << "\n";
 }
 
 void InputData::setNumOfSourceVars()
 {
-	if (input_interactive)
-		out << "Введите количество основных переменных задачи: ";
-	std::cin >> numOfSourceVars;
-	if (numOfSourceVars <= 0)
-		die(_("Вы ввели недопустимое значение"), 1);
+	for (numOfSourceVars = 0; numOfSourceVars <= 0;) {
+		_out << std::cout << "Введите количество основных переменных задачи (> 0): ";
+		std::cin >> numOfSourceVars;
+	}
 }
 
 void InputData::setWayOfTargetFunction()
 {
 	std::string MaxOrMin;
 
-	if (input_interactive)
-		out << "Введите направление целевой функции (max, min): ";
-	std::cin >> MaxOrMin;
-	if (MaxOrMin.compare("max") == 0)
-		wayOfTargetFunction = true;
-	else if (MaxOrMin.compare("min") == 0)
-		wayOfTargetFunction = false;
-	else
-		die(_("Вы ввели недопустимое значение."), 2);
-	if (input_interactive)
-		std::cout << "\n";
+	while (MaxOrMin.compare("max") != 0 && MaxOrMin.compare("min")) {
+		_out << std::cout << "Введите направление целевой функции (max, min): ";
+		std::cin >> MaxOrMin;
+		if (MaxOrMin.compare("max") == 0)
+			wayOfTargetFunction = true;
+		else if (MaxOrMin.compare("min") == 0)
+			wayOfTargetFunction = false;
+	}
+	_out << std::cout << "\n";
 }
 

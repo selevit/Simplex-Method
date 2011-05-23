@@ -25,7 +25,7 @@ class InputData {
 
 	public:
 	bool input_interactive;
-InputData() : input_interactive(true) {};
+	InputData(bool _i_i = true) : input_interactive(_i_i) {};
 
 		/*
 		 * Данная функция объединяет все функции
@@ -105,7 +105,7 @@ InputData() : input_interactive(true) {};
 		void setWayOfTargetFunction();
 
 	protected:
-	
+
 		UserData* user_data;
 	
 		/*

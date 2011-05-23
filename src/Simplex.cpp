@@ -6,6 +6,7 @@
 #include <iomanip>
 
 #include "Simplex.h"
+#include "Out.h"
 
 void Simplex::init()
 {
@@ -120,13 +121,13 @@ void Simplex::displayResult(Plane* p, unsigned int iteration, enum result r)
 	switch(r)
 	{
 	case good_solution:
-		out << _("Оптимальный план найден. Количество итераций = ") << iteration;
+		_out << out << "Оптимальный план найден. Количество итераций = " << iteration;
 		break;
 	case no_solution:
-		out << _("Целевая функция не ограничена. Задача с данным условием не имеет решений.");
+		_out << out << "Целевая функция не ограничена. Задача с данным условием не имеет решений.";
 		break;
 	case bad_solution:
-		out << _("Данная задача имеет решение, но оно не является оптимальным.");
+		_out << out << "Данная задача имеет решение, но оно не является оптимальным.";
 		break;
 	}
 	out << "\n\n";
