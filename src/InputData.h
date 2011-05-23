@@ -17,24 +17,15 @@
 #ifndef _SOURCE_DATA_H_
 #define _SOURCE_DATA_H_ 1
 
+#include "Plane.h"
+#include "Out.h"
+#include "UserData.h"
+
 class InputData {
 
 	public:
-	
-		/* 
-		 * Данная функция дает пользователю возможность
-		 * выбора метода ввода (с клавиатуры и из файла).
-		*/
-		
-		void selectInputMethod();
-		
-		/*
-		 * Данная функция задает име входного файла.
-		 * Если пользователь выбрал метод ввода с клавиатуры,
-		 * то задается значение -1
-		*/
-
-		void setInputFile();
+	bool input_interactive;
+	InputData(bool _i_i = true) : input_interactive(_i_i) {};
 
 		/*
 		 * Данная функция объединяет все функции
@@ -49,11 +40,7 @@ class InputData {
 		 * Данная функция принимает все свободные члены
 		 * системы неравенств и возвращает их значения
 		 * в качестве указателя.
-		*/
-
-		double * getFreeMembersOfSystem();
-		
-		/*
+		 *
 		 * Данная функция присваивает закрытому члену freeMembersOfSystem
 		 * (Свободные члены системы неравенств) значения, полученные из
 		 * функции getFreeMembersOfSystem
@@ -65,11 +52,7 @@ class InputData {
 		 * Данная функция принимает все коэффициенты
 		 * переменных системы неравенств и возвращает
 		 * их значения в качестве указателя.
-		*/
-
-		double ** getFactorsOfSystemVars();
-
-		/*
+		 *
 		 * Данная функция присваивает закрытому члену factorOfSystemVars
 		 * (Коэффициенты переменных в системе неравенств) значение
 		 * полученное из функции getFactorsOfSystemVars/
@@ -82,11 +65,7 @@ class InputData {
 		 * переменных Целевой функции, введенные
 		 * пользователем с клавиатуры и возвращает
 		 * Указатель на эти значения.
-		*/
-
-		double * getFactorsOfTargetFunctionVars();
-
-		/*
+		 *
 		 * Данная функция задает значение, полученное из
 		 * функции getFactorsOfTargetFunctionVars()
 		 * закрытому члену factorsOfTargetFunctionVars.
@@ -101,7 +80,7 @@ class InputData {
 		 * и возвращает это значение.
 		*/
 
-		int getNumOfSourceVars();
+		void getNumOfSourceVars();
 
 		/*
 		 * Данная функция задает закрытому члену класса
@@ -110,7 +89,7 @@ class InputData {
 		 * getNumOfSourceVars()/
 		*/
 
-		bool setNumOfSourceVars();
+		void setNumOfSourceVars();
 
 		/*
 		 * Данная функция принимает значение
@@ -118,55 +97,16 @@ class InputData {
 		 * задачи, проверяет его на корректность, если
 		 * все верно возвращает 1 или 0 в зависимости от
 		 * введенного пользователя значения. 
-		*/
-
-		bool getWayOfTargetFunction();
-
-		/*
+		 *
 		 * Данная функция задает направаление
 		 * целевой функции поставленной задачи.
 		*/
 		
 		void setWayOfTargetFunction();
 
-		/*
-		 * Данная фукнция принимает целочисленный аргумент
-		 * и возвращает пользователю ошибку, соответствующую
-		 * этому аргументу.
-		*/
-
-		void error(int numberOfError);
-
 	protected:
-	
-		/*
-		 * Метод ввода данных (вручную/из файла).
-		*/
 
-		bool inputMethod;
-
-		/*
-		 * Имя входного текстового файла.
-		 * если пользователь выбрал ручной метод
-		 * ввода, то значение данного члена
-		 * будет равно -1
-		*/
-
-		char * inputFileName;
-
-		/*
-		 * Количество исходных переменных
-		 * целевой функции и системы неравенств
-		*/
-
-		int numOfSourceVars; 
-
-		/*
-		 * Коэффициенты переменных
-		 * целевой функции
-		*/
-
-		double *  factorsOfTargetFunctionVars;
+		UserData* user_data;
 	
 		/*
 		 * Направление целевой функции
@@ -174,19 +114,12 @@ class InputData {
 		*/
 
 		bool wayOfTargetFunction;
-		
-		/*
-		 * Коэффициенты переменных при
-		 * системе неравенств
-		*/
-
-		double ** factorsOfSystemVars;
 
 		/*
-		 * Значения свободных членов
-		 * про системе неравенств
+		 * Количество исходных переменных
+		 * целевой функции и системы неравенств
 		*/
 
-		double * freeMembersOfSystem;
+		int numOfSourceVars; 
 };
 #endif

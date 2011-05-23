@@ -1,13 +1,8 @@
 #ifndef _SIMPLEX_H_
 #define _SIMPLEX_H_ 1
 
-
-#include <iostream>
-
 #include "InputData.h"
 #include "Plane.h"
-// #include "SubPlane.h"
-
 
 /*
  * В этом файле содержится класс, элементы которого
@@ -19,7 +14,7 @@ enum result {
 	good_solution, bad_solution, no_solution 
 };
 
-class Simplex : public InputData  {
+class Simplex : public InputData {
 
 	public:
 		

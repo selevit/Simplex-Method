@@ -1,38 +1,40 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <sstream>
-#include <algorithm>
 #include <iomanip>
 
 #include "Simplex.h"
+#include "Out.h"
 
 void Simplex::init() {
 	int i,j;	
+
 	old_plane = new Plane(numOfSourceVars);
 	new_plane = new Plane(numOfSourceVars);
 
 	for (i = 0; i < numOfSourceVars; ++i) {
 		(*new_plane->basisVars)[0][i] = numOfSourceVars + i + 1;
-		(*new_plane->basisVars)[1][i] = freeMembersOfSystem[i];
+		(*new_plane->basisVars)[1][i] = user_data->freeMembersOfSystem[i];
 	}
 
 	for (i = 0; i <numOfSourceVars; i++)
-		new_plane->indexString[i] = -factorsOfTargetFunctionVars[i];
-
+		new_plane->indexString[i] = -user_data->factorsOfTargetFunctionVars[i];
 	for (; i < numOfSourceVars * 2; i++)
 		new_plane->indexString[i] = 0;
 
-	for (i = 0; i < numOfSourceVars; ++i) {
-		for (j = 0; j < numOfSourceVars; j++) {
-			(*new_plane->varsFactors)[i][j] = factorsOfSystemVars[i][j];
-		 	if (freeMembersOfSystem[i] < 0)
+	for  (i = 0; i < numOfSourceVars; ++i)
+	{
+		for (j = 0; j < numOfSourceVars; j++)
+		{
+			// TODO: Это можно сделать без копирования
+			(*new_plane->varsFactors)[i][j] = (*user_data->factorsOfSystemVars)[i][j];
+		 	if (user_data->freeMembersOfSystem[i] < 0)
 				(*new_plane->varsFactors)[i][j] *= -1;
 		}
 		for (; j < numOfSourceVars*2; j++)
 			(*new_plane->varsFactors)[i][j] = i + numOfSourceVars == j;
 	}
-	
+
 	setIndexOfLeavingColumn(new_plane);
 	
 	for (i = 0; i < numOfSourceVars; ++i)
@@ -85,9 +87,7 @@ bool Simplex::checkThColumn(Plane* p) {
 }
 
 enum result Simplex::checkPlane(Plane* p) {
-	int i;
-	
-	for (i = 0; i < numOfSourceVars; ++i) {
+	for (int i = 0; i < numOfSourceVars; ++i) {
 		if (wayOfTargetFunction) {
 			if (p->indexString[i] < 0) return bad_solution;
 		} else {
@@ -102,7 +102,7 @@ void Simplex::displayResult(Plane* p, unsigned int iteration, enum result r) {
 	std::stringstream out;
 
 	if (r == good_solution) {
-		out << "\n\nОптимальный план найден. Количество итераций = " << iteration << "\n\n";
+		out << "Оптимальный план найден. Количество итераций = " << iteration << "\n\n";
 		for (i = 0; i < numOfSourceVars; i++)
 			out << "x" << (*p->basisVars)[0][i] << " = " << (*p->basisVars)[1][i] << "\n";
 		out << "\n\nf(x) = " << p->targetFunction << "\n";
@@ -120,10 +120,11 @@ void Simplex::dumpToTableTxt(Plane* p, unsigned int iteration, enum result r) {
 	std::stringstream buf;
 
 	buf << "Задана целевая функция: f(x) = ";	
-	for (i = 0; i < numOfSourceVars; ++i) {
-		if (factorsOfTargetFunctionVars[i] > 0 && i)
+	for (i = 0; i < numOfSourceVars; ++i)
+	{
+		if (user_data->factorsOfTargetFunctionVars[i] > 0 && i)
 			buf << " + ";
-		buf << factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
+		buf << user_data->factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
 	}
 
 	buf << "\n\n";
@@ -193,21 +194,23 @@ void Simplex::setAllowingMember(Plane* p) {
 	p->allowingMember = (*p->varsFactors)[p->indexOfLeavingRow][p->indexOfLeavingColumn];
 }
 
-void Simplex::setBasisVars(Plane* source, Plane* target) {
-		int i;
-		double A = (*source->basisVars)[1][source->indexOfLeavingRow];
-		double B;
+void Simplex::setBasisVars(Plane* source, Plane* target)
+{
+	int i;
+	double A = (*source->basisVars)[1][source->indexOfLeavingRow];
+	double B;
 
-		for (i = 0; i < numOfSourceVars; ++i) {
-			if (i == source->indexOfLeavingRow) {
-				(*target->basisVars)[0][source->indexOfLeavingRow] = source->indexOfLeavingColumn + 1;
-				(*target->basisVars)[1][i] = (*source->basisVars)[1][i] / source->allowingMember;
-			} else {
-				(*target->basisVars)[0][i] = (*source->basisVars)[0][i];
-				B = (*source->varsFactors)[i][source->indexOfLeavingColumn];
-				(*target->basisVars)[1][i] = (*source->basisVars)[1][i] - ((A * B) / source->allowingMember);
-			}
+	for (i = 0; i < numOfSourceVars; ++i)
+	{
+		if (i == source->indexOfLeavingRow) {
+			(*target->basisVars)[0][source->indexOfLeavingRow] = source->indexOfLeavingColumn + 1;
+			(*target->basisVars)[1][i] = (*source->basisVars)[1][i] / source->allowingMember;
+		} else {
+			(*target->basisVars)[0][i] = (*source->basisVars)[0][i];
+			B = (*source->varsFactors)[i][source->indexOfLeavingColumn];
+			(*target->basisVars)[1][i] = (*source->basisVars)[1][i] - ((A * B) / source->allowingMember);
 		}
+	}
 }
 
 void Simplex::setFactorsOfVars(Plane* source, Plane* target) {
