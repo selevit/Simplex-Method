@@ -14,11 +14,11 @@ void Simplex::init() {
 
 	for (i = 0; i < numOfSourceVars; ++i) {
 		(*new_plane->basisVars)[0][i] = numOfSourceVars + i + 1;
-		(*new_plane->basisVars)[1][i] = user_data->freeMembersOfSystem[i];
+		(*new_plane->basisVars)[1][i] = freeMembersOfSystem[i];
 	}
 
 	for (i = 0; i <numOfSourceVars; i++)
-		new_plane->indexString[i] = -user_data->factorsOfTargetFunctionVars[i];
+		new_plane->indexString[i] = -factorsOfTargetFunctionVars[i];
 	for (; i < numOfSourceVars * 2; i++)
 		new_plane->indexString[i] = 0;
 
@@ -27,8 +27,8 @@ void Simplex::init() {
 		for (j = 0; j < numOfSourceVars; j++)
 		{
 			// TODO: Это можно сделать без копирования
-			(*new_plane->varsFactors)[i][j] = (*user_data->factorsOfSystemVars)[i][j];
-		 	if (user_data->freeMembersOfSystem[i] < 0)
+			(*new_plane->varsFactors)[i][j] = (*factorsOfSystemVars)[i][j];
+		 	if (freeMembersOfSystem[i] < 0)
 				(*new_plane->varsFactors)[i][j] *= -1;
 		}
 		for (; j < numOfSourceVars*2; j++)
@@ -122,9 +122,9 @@ void Simplex::dumpToTableTxt(Plane* p, unsigned int iteration, enum result r) {
 	buf << "Задана целевая функция: f(x) = ";	
 	for (i = 0; i < numOfSourceVars; ++i)
 	{
-		if (user_data->factorsOfTargetFunctionVars[i] > 0 && i)
+		if (factorsOfTargetFunctionVars[i] > 0 && i)
 			buf << " + ";
-		buf << user_data->factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
+		buf << factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
 	}
 
 	buf << "\n\n";

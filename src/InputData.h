@@ -19,7 +19,7 @@
 
 #include "Plane.h"
 #include "Out.h"
-#include "UserData.h"
+#include "Matrix.h"
 
 class InputData {
 
@@ -105,9 +105,28 @@ class InputData {
 		void setWayOfTargetFunction();
 
 	protected:
+		void Init(unsigned int);
+       /*
+	    *  Коэффициенты переменных
+	    *  целевой функции
+	    */
 
-		UserData* user_data;
-	
+		double * factorsOfTargetFunctionVars;
+		
+		/*
+		 * Коэффициенты переменных при
+		 * системе неравенств
+		*/
+
+		matrix* factorsOfSystemVars;
+
+		/*
+		 * Значения свободных членов
+		 * про системе неравенств
+		*/
+
+		double * freeMembersOfSystem;
+
 		/*
 		 * Направление целевой функции
 		 * (минимум/максимум).

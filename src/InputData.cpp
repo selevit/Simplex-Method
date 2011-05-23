@@ -10,7 +10,7 @@ void InputData::getAndSetInputData()
 		_out.can_output = false;
 
 	setNumOfSourceVars();
-	user_data = new UserData(numOfSourceVars);
+	Init(numOfSourceVars);
 	setFactorsOfTargetFunctionVars();
 	setWayOfTargetFunction();
 	setFactorsOfSystemVars();
@@ -26,7 +26,7 @@ void InputData::setFreeMembersOfSystem()
 	{
 		_out << std::cout << "Введите значение свободного члена для " << i + 1 << "-го неравенства: ";
 // TODO: вот это сегфолтнется, если долбоюзер введёт букву
-		std::cin >> user_data->freeMembersOfSystem[i];
+		std::cin >> freeMembersOfSystem[i];
 	}
 	_out << std::cout << "\n";
 }
@@ -41,7 +41,7 @@ void InputData::setFactorsOfSystemVars()
 		{
 			_out << std::cout << "Введите коэффициент при X" << j + 1 << " для " << i + 1 << "-го неравенства: ";
 // аналогично
-			std::cin >> (*user_data->factorsOfSystemVars)[i][j];
+			std::cin >> (*factorsOfSystemVars)[i][j];
 		}
 		_out << std::cout << "\n";
 	}
@@ -54,7 +54,7 @@ void InputData::setFactorsOfTargetFunctionVars()
 	{
 		_out << std::cout << "Введите коэффициент целевой функции при X" << i + 1 << ": ";
 // аналогично
-		std::cin >> user_data->factorsOfTargetFunctionVars[i];
+		std::cin >> factorsOfTargetFunctionVars[i];
 	}
 	_out << std::cout << "\n";
 }
@@ -82,3 +82,9 @@ void InputData::setWayOfTargetFunction()
 	_out << std::cout << "\n";
 }
 
+void InputData::Init(unsigned int vars)
+{
+	freeMembersOfSystem = new double[vars];
+	factorsOfSystemVars = new matrix(vars, vars);
+	factorsOfTargetFunctionVars = new double[vars];
+}
