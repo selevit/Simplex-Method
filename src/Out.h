@@ -6,12 +6,13 @@
 class Out
 {
 public:
-	bool use_cp866;
 	bool can_output;
+	bool stdin_is_a_terminal;
+	bool stdout_is_a_terminal;
 	Out& operator<<(int);
 	Out& operator<<(const char*);
 	Out& operator<<(std::ostream&); 
-Out() : use_cp866(false), can_output(true) {};
+	Out();
 private:
 	std::ostream* p;
 	const char* uni_to_cp866(const char*);

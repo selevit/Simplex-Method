@@ -17,15 +17,13 @@
 #ifndef _SOURCE_DATA_H_
 #define _SOURCE_DATA_H_ 1
 
-#include "Plane.h"
-#include "Out.h"
+#include <string>
+
 #include "Matrix.h"
 
 class InputData {
 
 	public:
-	bool input_interactive;
-	InputData(bool _i_i = true) : input_interactive(_i_i) {};
 
 		/*
 		 * Данная функция объединяет все функции
@@ -103,9 +101,11 @@ class InputData {
 		*/
 		
 		void setWayOfTargetFunction();
+		void setSign();
 
 	protected:
 		void Init(unsigned int);
+		std::string sign;
        /*
 	    *  Коэффициенты переменных
 	    *  целевой функции

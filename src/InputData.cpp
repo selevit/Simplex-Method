@@ -6,7 +6,7 @@
 
 void InputData::getAndSetInputData()
 {
-	if (!input_interactive)
+	if (!_out.stdin_is_a_terminal)
 		_out.can_output = false;
 
 	setNumOfSourceVars();
@@ -16,7 +16,7 @@ void InputData::getAndSetInputData()
 	setFactorsOfSystemVars();
 	setFreeMembersOfSystem();
 
-	if (!input_interactive)
+	if (!_out.stdin_is_a_terminal)
 		_out.can_output = true;
 }
 
