@@ -1,4 +1,4 @@
-#include <iostream>
+#include <ostream>
 #include <cstdio>
 
 #ifdef _WIN32

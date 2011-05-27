@@ -22,7 +22,7 @@
 class InputData {
 
 	public:
-	InputData();
+	void get_data_from_user();
 
 		/*
 		 * Данная функция принимает все свободные члены

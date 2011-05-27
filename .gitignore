@@ -1,7 +1,7 @@
-Simplex
-TABLE.TXT
+src/Simplex
 table.txt
 *~
-build/
 tests/test*.table
 tests/test*.out
+*.obj
+*.exe

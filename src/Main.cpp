@@ -14,6 +14,7 @@
 int main()
 {
 	Simplex s;
+	s.get_data_from_user();
 	s.run();
 
 	return 0;

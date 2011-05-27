@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [[ ! -e build ]]; then mkdir build; fi
-find src/ -type f -name "*.cpp" -o -type f -name "*.h" | while read file ; do
-	filename=`basename ${file}`
-	cp -v "${file}" build/
-	enconv -L ru -V -x cp1251 "build/${filename}"
-done

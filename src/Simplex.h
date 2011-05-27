@@ -23,7 +23,7 @@ class Simplex : public InputData {
 		 * для первого опорного плана
 		*/
 
-		Simplex();
+		void Init();
 
 		/*
 		 * Данная функция задает значения для

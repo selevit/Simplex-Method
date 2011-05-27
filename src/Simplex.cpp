@@ -6,7 +6,7 @@
 #include "Simplex.h"
 #include "Out.h"
 
-Simplex::Simplex() {
+void Simplex::Init() {
 	int i,j;	
 
 	old_plane = new Plane(numOfSourceVars);
@@ -44,11 +44,13 @@ Simplex::Simplex() {
 	setAllowingMember(new_plane);
 }
 
-void Simplex::run() {
-
+void Simplex::run()
+{
 	int i = 1;
 	Plane* t;
 	enum result r;
+
+	Init();
 
 	for (;;) {
 		if (good_solution == (r = checkPlane(new_plane))) {

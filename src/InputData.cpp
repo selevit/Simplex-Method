@@ -5,7 +5,7 @@
 #include "InputData.h"
 #include "Out.h"
 
-InputData::InputData()
+void InputData::get_data_from_user()
 {
 	if (!_out.stdin_isatty)
 		_out.can_output = false;
