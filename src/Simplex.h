@@ -23,7 +23,7 @@ class Simplex : public InputData {
 		 * для первого опорного плана
 		*/
 
-		void init();
+		Simplex();
 
 		/*
 		 * Данная функция задает значения для
@@ -33,7 +33,7 @@ class Simplex : public InputData {
 		 * элементов текущего плана в симплекс таблице.
 		*/
 
-		void setValues();
+		void run();
 
 		/*
 		 * Данная фукнция проверяет полученный план

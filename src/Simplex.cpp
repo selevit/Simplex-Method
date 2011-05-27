@@ -6,7 +6,7 @@
 #include "Simplex.h"
 #include "Out.h"
 
-void Simplex::init() {
+Simplex::Simplex() {
 	int i,j;	
 
 	old_plane = new Plane(numOfSourceVars);
@@ -44,7 +44,7 @@ void Simplex::init() {
 	setAllowingMember(new_plane);
 }
 
-void Simplex::setValues() {
+void Simplex::run() {
 
 	int i = 1;
 	Plane* t;
@@ -102,14 +102,14 @@ void Simplex::displayResult(Plane* p, unsigned int iteration, enum result r) {
 	std::stringstream out;
 
 	if (r == good_solution) {
-		out << "Оптимальный план найден. Количество итераций = " << iteration << "\n\n";
+		_out << out << "Оптимальный план найден. Количество итераций = " << iteration << "\n\n";
 		for (i = 0; i < numOfSourceVars; i++)
 			out << "x" << (*p->basisVars)[0][i] << " = " << (*p->basisVars)[1][i] << "\n";
-		out << "\n\nf(x) = " << p->targetFunction << "\n";
+		out << "\nf(x) = " << p->targetFunction << "\n";
 	}
 
 	if (r == no_solution)
-		out << "Целевая функция не ограничена. Задача с данным условием не имеет решений.\n";
+		_out << out << "Целевая функция не ограничена. Задача с данным условием не имеет решений.\n";
 
 	std::cout << out.str() << std::flush;
 }

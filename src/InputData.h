@@ -17,22 +17,12 @@
 #ifndef _SOURCE_DATA_H_
 #define _SOURCE_DATA_H_ 1
 
-#include <string>
-
 #include "Matrix.h"
 
 class InputData {
 
 	public:
-
-		/*
-		 * Данная функция объединяет все функции
-		 * данного класса, т.е. принимает и задает
-		 * Входные данные для последующего решения
-		 * Задачи.
-		*/
-
-		void getAndSetInputData();
+	InputData();
 
 		/*
 		 * Данная функция принимает все свободные члены
@@ -101,11 +91,10 @@ class InputData {
 		*/
 		
 		void setWayOfTargetFunction();
-		void setSign();
 
 	protected:
-		void Init(unsigned int);
-		std::string sign;
+		void alloc_memory(unsigned int);
+
        /*
 	    *  Коэффициенты переменных
 	    *  целевой функции

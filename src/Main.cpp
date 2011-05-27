@@ -14,9 +14,7 @@
 int main()
 {
 	Simplex s;
-	s.getAndSetInputData();  
-	s.init();
-	s.setValues();
+	s.run();
 
 	return 0;
 }

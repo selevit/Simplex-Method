@@ -7,15 +7,17 @@ class Out
 {
 public:
 	bool can_output;
-	bool stdin_is_a_terminal;
-	bool stdout_is_a_terminal;
+	bool stdin_isatty;
 	Out& operator<<(int);
 	Out& operator<<(const char*);
 	Out& operator<<(std::ostream&); 
 	Out();
 private:
+	bool stdout_isatty;
 	std::ostream* p;
-	const char* uni_to_cp866(const char*);
+#ifdef _WIN32
+	const char* utf8_to_cp866(const char*);
+#endif
 };
 
 extern Out _out;

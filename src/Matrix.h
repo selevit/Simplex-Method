@@ -1,12 +1,6 @@
 #ifndef _MATRIX_H_
 #define _MATRIX_H_
 
-#include <cstdlib>
-#include <cstring>
-#include <iostream>
-
-#define err(no) std::cerr << "Oops! Something went wrong." << std::endl; exit(no);
-
 class matrix {
 	private:
 		double *buf;
