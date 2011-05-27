@@ -1,11 +1,19 @@
 #/bin/bash
 
-key="$1"
-
 exe='../src/Simplex'
-if [[ ! -e "$exe" ]] && [[ $key != "clean" ]]; then
-	echo "No such file \"$exe\", nothing to test. Aborting."
-	exit 1
+
+if [[ $1 != "" ]] && [[ $1 != "update" ]] && [[ $1 != "clean" ]]; then
+	if ! echo $1 | grep -q "^[0-9]*$"; then
+		echo "What does \"$1\" mean? What do you want?"
+		exit 1
+	fi
+fi
+
+if [[ $1 == "" ]] || [[ $1 == "update" ]]; then
+	if [[ ! -e "$exe" ]]; then
+		echo "No such file \"$exe\", nothing to test. Aborting."
+		exit 1
+	fi
 fi
 
 fail()
@@ -25,14 +33,25 @@ _diff()
 for test_txt in test*.txt; do
 	test_name=${test_txt%\.*}
 	
-	if [[ $key == "clean" ]]; then
+	if [[ $1 == "clean" ]]; then
 		rm -fv "${test_name}.out" "${test_name}.table"
 		continue
 	fi
 
-	echo -n "Running $test_name... "
+	if [[ $1 == "update" ]]; then
+		if [[ $2 != "" ]] && [[ "test${2}" != $test_name ]]; then
+			continue
+		fi 
+		echo "Updating answers for $test_name"
+		$exe <$test_txt >${test_name}.out
+		mv -f table.txt "${test_name}.table.txt.correct"
+		mv -f ${test_name}.out "${test_name}.out.correct"
+		continue
+	fi
 
+	echo -n "Running $test_name... "
 	$exe <$test_txt >${test_name}.out
+
 	mv -f table.txt "${test_name}.table"
 	retval=$?
 	if [[ $retval != 0 ]]; then

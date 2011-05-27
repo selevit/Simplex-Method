@@ -1,11 +1,9 @@
 default:
-	cd src/ && make
+	cd src/ && nmake
 test:
-	cd tests/ && make
-win32:
-	(cd src && nmake win32)
+	cd tests/ && call run-tests.bat
 clean:
-	rm -rf build/
-	cd src/ && make clean
-	cd tests/ && make clean
-all: default test
+	cd src/ && nmake clean
+	cd tests/ && @for %%f in (*.out) do @del %%f >nul
+	cd tests/ && @for %%f in (*.table) do @del %%f >nul
+all: clean default test
