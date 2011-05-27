@@ -50,11 +50,11 @@ const char* Out::utf8_to_cp866(const char* u)
 
 	required_size = MultiByteToWideChar(65001, 0, u, -1, 0, 0);
 	wbuf = new wchar_t[required_size];
-	MultiByteToWideChar(65001, 0, u, -1, wbuf, 100);
+	MultiByteToWideChar(65001, 0, u, -1, wbuf, required_size);
 
 	required_size = WideCharToMultiByte(866, 0, wbuf, -1, 0, 0, 0, 0);
 	buf = new char[required_size];
-	WideCharToMultiByte(866, 0, wbuf, -1, buf, 100, 0, 0);
+	WideCharToMultiByte(866, 0, wbuf, -1, buf, required_size, 0, 0);
 	delete[] wbuf;
 
 	return buf;
