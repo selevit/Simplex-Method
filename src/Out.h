@@ -1,25 +1,12 @@
 #ifndef _OUT_H_
 #define _OUT_H_
 
-#include <ostream>
-
-class Out
-{
-public:
-	bool can_output;
-	bool stdin_isatty;
-	Out& operator<<(int);
-	Out& operator<<(const char*);
-	Out& operator<<(std::ostream&); 
-	Out();
-private:
-	bool stdout_isatty;
-	std::ostream* p;
 #ifdef _WIN32
-	const char* utf8_to_cp866(const char*);
-#endif
-};
+# include "OutWin32.h"
+#else
+# include "OutLinux.h"
+#endif /* _WIN32 */
 
 extern Out _out;
 
-#endif
+#endif /* _OUT_H_ */
