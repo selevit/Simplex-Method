@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "eqparser.h"
 
@@ -8,6 +9,7 @@ int main()
 	using namespace eqparser;
 
 	std::string s;
+	std::stringstream err;
 	struct _eq* eq;
 	_vars::iterator it;
 	enum _eqtype t;
@@ -16,10 +18,10 @@ int main()
 	t = func;
 	getline(std::cin, s);
 	
-	const char* f = parse(s.c_str(), eq, t);
+	bool g = parse(s.c_str(), eq, err, t);
 
-	if (f)
-		std::cout << f << std::endl;
+	if (!g)
+		std::cout << err.str() << std::endl;
 	else { // win
 		for (it = eq->vars.begin(); it != eq->vars.end(); it++)
 			std::cout << "a: " << (*it).a << ", b: " << (*it).b << std::endl;

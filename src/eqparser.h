@@ -19,7 +19,7 @@ namespace eqparser {
 
 	enum _eqtype { ineq, func };
 
-	const char* parse(const char*, struct _eq*, enum _eqtype = ineq);
+	bool parse(const char*, struct _eq*, std::stringstream&, enum _eqtype = ineq);
 }
 
 #endif /* _EQPARSER_H_ */

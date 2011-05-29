@@ -2,6 +2,7 @@
 #include <cstring>
 #include <cmath>
 #include <iostream>
+#include <sstream>
 
 #include "eqparser.h"
 
@@ -24,24 +25,26 @@ struct _token {
 
 static bool compare_vars(struct var& a, struct var& b) { return a.b < b.b; }
 
-const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
+bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype eqtype)
 {
 	_vars::iterator it;
 	struct var _t;
 	double t;
 	enum { start, start_as, a, at_x, b, c, es, as, es_c, at_approach, at_lim } whereami;
-	unsigned int i;
-	bool win, found_match;
-	const char* fail;
+	unsigned int i, iter_i;
+	bool found_match;
 	char _x;
 	_token tok;
+	enum { _none, win, fail } result;
+	const char* errmsg;
 
 	_x = 0;
 	i = 0;
 	whereami = start;
 	found_match = false;
-	fail = 0; win = false;
+	result = _none;
 	for (;;) {
+		iter_i = i;
 		tok.type = none;
 
 		while (s[i] == ' ' || s[i] == '\t') {
@@ -131,10 +134,6 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 			}
 		}
 
-		if (tok.type == none) {
-			fail = "Unallowed character detected";
-		}
-
 		switch (whereami) {
 		case start: // space, arith_sign, num, x
 			if (tok.type == space) {
@@ -158,7 +157,8 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				break;
 			}
 
-			fail = "Expected space/tab, num, sign or x at the beginning";
+			errmsg = "ожидался пробел, число, арифметический знак или х";
+			result = fail;
 			break;
 		case start_as: // num
 			if (tok.type == num) {
@@ -171,7 +171,8 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				break;
 			}
 
-			fail = "Unexpected token after start_as";
+			errmsg = "ожидалось число или х";
+			result = fail;
 			break;
 		case a: // x
 			if (tok.type == x) {
@@ -179,17 +180,19 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				break;
 			}
 
-			fail = "You can't put anything besides x after a";
+			errmsg = "ожидался х";
+			result = fail;
 			break;
 		case at_x:
 			if (tok.type == num) {
 				whereami = b;
 				t = fabs(tok.num - (int)tok.num);
 				if (t != 0 && t > 0.00001) {
-					fail = "index can't be fractional";
+					errmsg = "индекс х не может быть дробным";
+					result = fail;
 					break;
 				}
-				_t.b = (unsigned int)tok.num;
+				_t.b = tok.num;
 
 				if (eq->vars.empty()) {
 					eq->vars.push_back(_t);
@@ -209,7 +212,8 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				break;
 			}
 
-			fail = "You must put index after x";
+			errmsg = "ожидался индекс х";
+			result = fail;
 			break;
 		case b: // space, arith_sign, eq_sign
 			if (tok.type == space) {
@@ -231,14 +235,16 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				whereami = es;
 				eq->rval = 1;
 				if (tok.eqsign == lt || tok.eqsign == gt) {
-					fail = "You can't use < or >";
+					errmsg = "не допускается использовать < или >";
+					result = fail;
 					break;
 				}
 				eq->sign = tok.eqsign;
 				break;
 			}
 
-			fail = "Only space, arith_sign or eq_sign is allowed after b";
+			errmsg = "ожидался пробел, арифметический знак или знак сравнения после индекса";
+			result = fail;
 			break;
 		case at_approach:
 			if (tok.type == space) {
@@ -250,7 +256,8 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				break;
 			}
 
-			fail = "Expected ether space or limit after ->";
+			errmsg = "ожидался пробел или лимит после ->";
+			result = fail;
 			break;
 		case as: // space, num, x
 			if (tok.type == space) {
@@ -266,7 +273,8 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				break;
 			}
 
-			fail = "Unexpected token after as";
+			errmsg = "ожидался пробел, число или х";
+			result = fail;
 			break;
 		case es: // space, num, arith_sign
 			if (tok.type == space) {
@@ -284,7 +292,8 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				break;
 			}
 
-			fail = "You can only put space or rvalue after equalty sign";
+			errmsg = "ожидался пробел, знак минус или число";
+			result = fail;
 			break;
 		case es_c:
 			if (tok.type == tok.num) {
@@ -293,37 +302,40 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 				break;
 			}
 
-			fail = "You can't put anything between a sign and c";
+			errmsg = "ожидалось число";
+			result = fail;
 			break;
 		case c:
 			if (tok.type == space) {
 				break;
 			}
 			if (tok.type == end) {
-				win = true;
+				result = win;
 				break;
 			}
 
-			fail = "Nothing allowed after c";
+			errmsg = "ожидался пробел или конец строки";
+			result = fail;
 			break;
 		case at_lim:
 			if (tok.type == space) {
 				break;
 			}
 			if (tok.type == end) {
-				win = true;
+				result = win;
 				break;
 			}
 
-			fail = "Nothing allowed after limit";
+			errmsg = "ожидался пробел или конец строки";
+			result = fail;
 			break;
 		}
 
-		if (fail || win)
+		if (result == fail || result == win)
 			break;
 	}
 
-	if (win) {
+	if (result == win) {
 		for (it = eq->vars.begin(); it != eq->vars.end();) {
 			if ((*it).a == 0) {
 				it = eq->vars.erase(it);
@@ -332,12 +344,15 @@ const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 		}
 
 		if (eq->vars.empty())
-			fail = "There must be at least one variable with a that isn't null";
+			errmsg = "в левой части неравенства должна быть хотя бы одна переменная к коэффициентом отичным от нуля";
 		else
 			eq->vars.sort(compare_vars);
 	}
 
-	return fail;
+	if (result == fail) {
+		err << "(" << iter_i << ") " << errmsg;
+	}
+	return result == win;
 }
 
 } // namespace eqparser
