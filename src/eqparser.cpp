@@ -1,5 +1,7 @@
 #include <cstdlib>
+#include <cstring>
 #include <cmath>
+#include <iostream>
 
 #include "eqparser.h"
 
@@ -7,33 +9,33 @@
 #define iseqsign(x) (x == '<' || x == '=' || x == '>')
 #define isarithsign(x) (x == '+' || x == '-')
 
-enum _type { none, num, arith_sign, eq_sign, x, end, space };
+namespace eqparser {
+
+enum _type { none, num, arith_sign, eq_sign, x, end, space, min_max, approach };
 enum _arithsign { minus, plus, mul, _div };
 
 struct _token {
 	double num;
 	enum _type type;
-	enum eqparser::_eqsign eqsign;
+	enum _eqsign eqsign;
 	enum _arithsign arithsign;
+	enum _limit l;
 };
 
-static bool compare_vars(struct eqparser::var& a, struct eqparser::var& b) { return a.b < b.b; }
+static bool compare_vars(struct var& a, struct var& b) { return a.b < b.b; }
 
-const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
+const char* parse(const char* s, struct _eq* eq, enum _eqtype eqtype)
 {
-	using namespace eqparser;
-
 	_vars::iterator it;
 	struct var _t;
 	double t;
-	enum { start, start_as, a, at_x, b, c, es, as, es_c } whereami;
+	enum { start, start_as, a, at_x, b, c, es, as, es_c, at_approach, at_lim } whereami;
 	unsigned int i;
 	bool win, found_match;
 	const char* fail;
 	char _x;
 	_token tok;
 
-	*eq = new struct _eq;
 	_x = 0;
 	i = 0;
 	whereami = start;
@@ -58,6 +60,18 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 		}
 
 		if (tok.type == none) {
+			if (strcmp(&s[i], "min") == 0) {
+				tok.type = min_max;
+				tok.l = min;
+				i += 3;
+			} else if (strcmp(&s[i], "max") == 0) {
+				tok.type = min_max;
+				tok.l = max;
+				i += 3;
+			}
+		}
+
+		if (tok.type == none) {
 			if (_x == 0) {
 				if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')) {
 					_x = s[i];
@@ -70,6 +84,11 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 					i++;
 				}
 			}
+		}
+
+		if (tok.type == none && strncmp(&s[i], "->", 2) == 0) {
+			tok.type = approach;
+			i += 2;
 		}
 
 		if (tok.type == none && iseqsign(s[i])) {
@@ -172,10 +191,10 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 				}
 				_t.b = (unsigned int)tok.num;
 
-				if ((*eq)->vars.empty()) {
-					(*eq)->vars.push_back(_t);
+				if (eq->vars.empty()) {
+					eq->vars.push_back(_t);
 				} else {
-					for (it = (*eq)->vars.begin(); it != (*eq)->vars.end(); it++) {
+					for (it = eq->vars.begin(); it != eq->vars.end(); it++) {
 						if ((*it).b == _t.b) {
 							(*it).a += _t.a;
 							found_match = true;
@@ -183,7 +202,7 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 						}
 					}
 					if (!found_match) {
-						(*eq)->vars.push_back(_t);
+						eq->vars.push_back(_t);
 					}
 					found_match = false;
 				}
@@ -204,18 +223,34 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 					_t.a = 1;
 				break;
 			}
-			if (tok.type == eq_sign) {
+			if (eqtype == func && tok.type == approach) {
+				whereami = at_approach;
+				break;
+			}
+			if (eqtype == ineq && tok.type == eq_sign) {
 				whereami = es;
-				(*eq)->rval = 1;
+				eq->rval = 1;
 				if (tok.eqsign == lt || tok.eqsign == gt) {
 					fail = "You can't use < or >";
 					break;
 				}
-				(*eq)->sign = tok.eqsign;
+				eq->sign = tok.eqsign;
 				break;
 			}
 
 			fail = "Only space, arith_sign or eq_sign is allowed after b";
+			break;
+		case at_approach:
+			if (tok.type == space) {
+				break;
+			}
+			if (tok.type == min_max) {
+				whereami = at_lim;
+				eq->l = tok.l;
+				break;
+			}
+
+			fail = "Expected ether space or limit after ->";
 			break;
 		case as: // space, num, x
 			if (tok.type == space) {
@@ -240,12 +275,12 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 			if (tok.type == arith_sign) {
 				whereami = es_c;
 				if (tok.arithsign == minus)
-					(*eq)->rval = -1;
+					eq->rval = -1;
 				break;
 			}
 			if (tok.type == num) {
 				whereami = c;
-				(*eq)->rval = tok.num;
+				eq->rval = tok.num;
 				break;
 			}
 
@@ -254,7 +289,7 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 		case es_c:
 			if (tok.type == tok.num) {
 				whereami = c;
-				(*eq)->rval *= tok.num;
+				eq->rval *= tok.num;
 				break;
 			}
 
@@ -271,6 +306,17 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 
 			fail = "Nothing allowed after c";
 			break;
+		case at_lim:
+			if (tok.type == space) {
+				break;
+			}
+			if (tok.type == end) {
+				win = true;
+				break;
+			}
+
+			fail = "Nothing allowed after limit";
+			break;
 		}
 
 		if (fail || win)
@@ -278,18 +324,20 @@ const char* eqparser::parse(const char* s, struct eqparser::_eq** eq)
 	}
 
 	if (win) {
-		for (it = (*eq)->vars.begin(); it != (*eq)->vars.end();) {
+		for (it = eq->vars.begin(); it != eq->vars.end();) {
 			if ((*it).a == 0) {
-				it = (*eq)->vars.erase(it);
+				it = eq->vars.erase(it);
 				continue;
 			} else it++;
 		}
 
-		if ((*eq)->vars.empty())
+		if (eq->vars.empty())
 			fail = "There must be at least one variable with a that isn't null";
 		else
-			(*eq)->vars.sort(compare_vars);
+			eq->vars.sort(compare_vars);
 	}
 
 	return fail;
 }
+
+} // namespace eqparser

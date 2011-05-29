@@ -17,7 +17,9 @@ namespace eqparser {
 		double rval;
 	};
 
-	const char* parse(const char*, struct _eq**);
+	enum _eqtype { ineq, func };
+
+	const char* parse(const char*, struct _eq*, enum _eqtype = ineq);
 }
 
 #endif /* _EQPARSER_H_ */
