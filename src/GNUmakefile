@@ -1,5 +1,5 @@
 default:
-	c++ -Wall -ggdb Main.cpp Simplex.cpp InputData.cpp Matrix.cpp Out.cpp -o Simplex
+	c++ -Wall -ggdb main.cpp Simplex.cpp Matrix.cpp Out.cpp eqparser.cpp -o Simplex
 clean:
 	rm -f Simplex
 

@@ -1,8 +1,6 @@
 #include <cstdlib>
 #include <cstring>
 #include <cmath>
-#include <iostream>
-#include <sstream>
 
 #include "eqparser.h"
 
@@ -25,26 +23,28 @@ struct _token {
 
 static bool compare_vars(struct var& a, struct var& b) { return a.b < b.b; }
 
-bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype eqtype)
+const char* parse(const char* s, struct _eq* eq, unsigned int* err_pos, enum _eqtype eqtype)
 {
 	_vars::iterator it;
 	struct var _t;
 	double t;
 	enum { start, start_as, a, at_x, b, c, es, as, es_c, at_approach, at_lim } whereami;
-	unsigned int i, iter_i;
+	unsigned int i;
 	bool found_match;
 	char _x;
 	_token tok;
 	enum { _none, win, fail } result;
-	const char* errmsg;
+	const char* err;
 
+	eq->vars.clear();
 	_x = 0;
+	err = 0;
 	i = 0;
 	whereami = start;
 	found_match = false;
 	result = _none;
 	for (;;) {
-		iter_i = i;
+		*err_pos = i+1;
 		tok.type = none;
 
 		while (s[i] == ' ' || s[i] == '\t') {
@@ -89,7 +89,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 			}
 		}
 
-		if (tok.type == none && strncmp(&s[i], "->", 2) == 0) {
+		if (tok.type == none && (strncmp(&s[i], "->", 2) == 0 || strncmp(&s[i], "=>", 2) == 0)) {
 			tok.type = approach;
 			i += 2;
 		}
@@ -157,7 +157,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался пробел, число, арифметический знак или х";
+			err = "ожидался пробел, число, арифметический знак или х";
 			result = fail;
 			break;
 		case start_as: // num
@@ -171,7 +171,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидалось число или х";
+			err = "ожидалось число или х";
 			result = fail;
 			break;
 		case a: // x
@@ -180,7 +180,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался х";
+			err = "ожидался х";
 			result = fail;
 			break;
 		case at_x:
@@ -188,7 +188,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				whereami = b;
 				t = fabs(tok.num - (int)tok.num);
 				if (t != 0 && t > 0.00001) {
-					errmsg = "индекс х не может быть дробным";
+					err = "индекс х не может быть дробным";
 					result = fail;
 					break;
 				}
@@ -212,7 +212,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался индекс х";
+			err = "ожидался индекс х";
 			result = fail;
 			break;
 		case b: // space, arith_sign, eq_sign
@@ -235,7 +235,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				whereami = es;
 				eq->rval = 1;
 				if (tok.eqsign == lt || tok.eqsign == gt) {
-					errmsg = "не допускается использовать < или >";
+					err = "не допускается использовать < или >";
 					result = fail;
 					break;
 				}
@@ -243,7 +243,10 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался пробел, арифметический знак или знак сравнения после индекса";
+			if (eqtype == ineq)
+				err = "ожидался пробел, арифметический знак или знак сравнения после индекса";
+			if (eqtype == func)
+				err = "ожидался пробел, арифметический знак или знак стремления (->) после индекса";
 			result = fail;
 			break;
 		case at_approach:
@@ -256,7 +259,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался пробел или лимит после ->";
+			err = "ожидался пробел или лимит (min/max) после ->";
 			result = fail;
 			break;
 		case as: // space, num, x
@@ -273,7 +276,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался пробел, число или х";
+			err = "ожидался пробел, число или х";
 			result = fail;
 			break;
 		case es: // space, num, arith_sign
@@ -292,7 +295,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался пробел, знак минус или число";
+			err = "ожидался пробел, знак минус или число";
 			result = fail;
 			break;
 		case es_c:
@@ -302,7 +305,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидалось число";
+			err = "ожидалось число";
 			result = fail;
 			break;
 		case c:
@@ -314,7 +317,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался пробел или конец строки";
+			err = "ожидался пробел или конец строки";
 			result = fail;
 			break;
 		case at_lim:
@@ -326,7 +329,7 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 				break;
 			}
 
-			errmsg = "ожидался пробел или конец строки";
+			err = "ожидался пробел или конец строки";
 			result = fail;
 			break;
 		}
@@ -344,15 +347,12 @@ bool parse(const char* s, struct _eq* eq, std::stringstream& err, enum _eqtype e
 		}
 
 		if (eq->vars.empty())
-			errmsg = "в левой части неравенства должна быть хотя бы одна переменная к коэффициентом отичным от нуля";
+			err = "в левой части неравенства должна быть хотя бы одна переменная с коэффициентом отичным от нуля";
 		else
 			eq->vars.sort(compare_vars);
 	}
 
-	if (result == fail) {
-		err << "(" << iter_i << ") " << errmsg;
-	}
-	return result == win;
+	return err;
 }
 
 } // namespace eqparser
