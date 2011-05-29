@@ -79,7 +79,7 @@ int main()
 			_out << std::cout << err_pos << ": " << err << " [функция не принята, попробуйте ещё раз]\n\n";
 		   
 	} while (err);
-	_out << std::cout << "Функция принята [" << recreate_ineq(&userdata.func, eqparser::func) << "]\n\n\n";
+	_out << std::cout << "Функция принята [" << recreate_ineq(&userdata.func, eqparser::func) << "]\n\n";
 
 	err = 0;
 	_out << std::cout << "Введите систему ограничений (по одному неравенству вида 1x0 + 2x1 >= 10 в строку), по окончании введите пустую строку (нажмите <enter>).\n\n";
@@ -98,7 +98,7 @@ int main()
 		if (0 != (err = eqparser::parse(buf.c_str(), userdata.system.back(), &err_pos, eqparser::ineq)))
 			_out << std::cout << err_pos << ": " << err << " [ограничение не принято, попробуйте ещё раз (пустая строка означает конец ввода)]\n\n";
 		else
-			_out << std::cout << "Ограничение принято [" << recreate_ineq(userdata.system.back(), eqparser::ineq) << "], введите следующее\n\n\n";
+			_out << std::cout << "Ограничение принято [" << recreate_ineq(userdata.system.back(), eqparser::ineq) << "], введите следующее\n\n";
 	}
 	
 
