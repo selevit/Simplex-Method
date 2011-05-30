@@ -2,6 +2,7 @@
 #define _EQPARSER_H_
 
 #include <list>
+#include <string>
 
 namespace eqparser {
 	enum _eqsign { le, lt, equal, gt, ge };
@@ -20,6 +21,7 @@ namespace eqparser {
 	enum _eqtype { ineq, func };
 
 	const char* parse(const char*, struct _eq*, unsigned int*, enum _eqtype = ineq);
+	void recreate_ineq(struct _eq*, std::string*, enum _eqtype);
 }
 
 #endif /* _EQPARSER_H_ */

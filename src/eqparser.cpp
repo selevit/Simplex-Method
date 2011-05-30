@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <cstring>
+#include <sstream>
 #include <cmath>
+#include <iostream>
 
 #include "eqparser.h"
 
@@ -58,8 +60,9 @@ const char* parse(const char* s, struct _eq* eq, unsigned int* err_pos, enum _eq
 		}
 
 		if (tok.type == none && isnum(s[i])) {
-			tok.type = num; 
+			tok.type = num;
 			for (tok.num = atof(&s[i]); isnum(s[i]) || s[i] == '.'; i++);
+// TODO: если &s[i] == "0x1", то atof возвращает 1
 		}
 
 		if (tok.type == none) {
@@ -153,6 +156,7 @@ const char* parse(const char* s, struct _eq* eq, unsigned int* err_pos, enum _eq
 				break;
 			}
 			if (tok.type == x) {
+				_t.a = 1;
 				whereami = at_x;
 				break;
 			}
@@ -186,6 +190,9 @@ const char* parse(const char* s, struct _eq* eq, unsigned int* err_pos, enum _eq
 		case at_x:
 			if (tok.type == num) {
 				whereami = b;
+				if (_t.a < 0.00001)
+					break;
+
 				t = fabs(tok.num - (int)tok.num);
 				if (t != 0 && t > 0.00001) {
 					err = "индекс х не может быть дробным";
@@ -221,7 +228,7 @@ const char* parse(const char* s, struct _eq* eq, unsigned int* err_pos, enum _eq
 			}
 			if (tok.type == arith_sign) {
 				whereami = as;
-				if (tok.arithsign == minus) 
+				if (tok.arithsign == minus)
 					_t.a = -1;
 				else
 					_t.a = 1;
@@ -299,7 +306,7 @@ const char* parse(const char* s, struct _eq* eq, unsigned int* err_pos, enum _eq
 			result = fail;
 			break;
 		case es_c:
-			if (tok.type == tok.num) {
+			if (tok.type == num) {
 				whereami = c;
 				eq->rval *= tok.num;
 				break;
@@ -353,6 +360,50 @@ const char* parse(const char* s, struct _eq* eq, unsigned int* err_pos, enum _eq
 	}
 
 	return err;
+}
+
+void recreate_ineq(struct _eq* eq, std::string* s, enum _eqtype et)
+{
+	std::stringstream ss;
+	_vars::iterator it;
+
+	for (it = eq->vars.begin(); it != eq->vars.end(); it++) {
+		if (it == eq->vars.begin()) {
+			if ((*it).a < 0 && fabs((*it).a == 1))
+				ss << "-";
+		} else
+			if ((*it).a > 0)
+				ss << "+ ";
+			else
+				ss << "- ";
+		if (fabs((*it).a) != 1)
+			ss << fabs((*it).a);
+		ss << "x" << (*it).b << " ";
+	}
+	if (et == func) {
+		ss << "-> ";
+		if (eq->l == max)
+			ss << "max";
+		else // eq->l == min
+			ss << "min";
+	} else { // et == ineq
+		switch (eq->sign) {
+		case equal:
+			ss << "= ";
+			break;
+		case le:
+			ss << "<= ";
+			break;
+		case ge:
+			ss << ">= ";
+			break;
+		default:
+			break;
+		}
+		ss << eq->rval;
+	}
+
+	*s = ss.str();
 }
 
 } // namespace eqparser
