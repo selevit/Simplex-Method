@@ -10,6 +10,7 @@ namespace eqparser {
 	struct var { double a; unsigned int b; };
 	typedef std::list<struct var> _vars;
 	enum _limit { max, min };
+	enum _arithsign { minus, plus, mul, _div };
 
 	struct _eq {
 		_vars vars;

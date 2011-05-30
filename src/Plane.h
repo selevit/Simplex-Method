@@ -2,6 +2,7 @@
 #define _PLANE_H_
 
 #include "Matrix.h"
+// #include "eqparser.h"
 
 class Plane {
 public:
@@ -54,6 +55,8 @@ public:
 	*/
 
 	matrix* varsFactors;
+
+//	enum eqparser::_arithsign arithsign;
 
 	Plane(unsigned int vars)
 	{

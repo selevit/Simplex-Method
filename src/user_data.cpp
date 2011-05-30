@@ -1,8 +1,10 @@
 #include <string>
 #include <iostream>
 
-#include "get_data_from_user.h"
+#include "user_data.h"
 #include "Out.h"
+
+namespace user_data {
 
 void get_data_from_user(struct _userdata* ud)
 {
@@ -44,3 +46,4 @@ void get_data_from_user(struct _userdata* ud)
 	}
 }
 
+} // namespace user_data

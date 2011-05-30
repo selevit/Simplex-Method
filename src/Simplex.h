@@ -1,8 +1,9 @@
 #ifndef _SIMPLEX_H_
 #define _SIMPLEX_H_ 1
 
-#include "InputData.h"
 #include "Plane.h"
+#include "user_data.h"
+#include "eqparser.h"
 
 /*
  * В этом файле содержится класс, элементы которого
@@ -14,7 +15,7 @@ enum result {
 	good_solution, bad_solution, no_solution 
 };
 
-class Simplex : public InputData {
+class Simplex {
 
 	public:
 		
@@ -23,7 +24,7 @@ class Simplex : public InputData {
 		 * для первого опорного плана
 		*/
 
-		void Init();
+	Plane* generate_plane(struct user_data::_userdata*);
 
 		/*
 		 * Данная функция задает значения для
@@ -110,6 +111,8 @@ class Simplex : public InputData {
 
 private:
 		Plane *old_plane, *new_plane;
+		int numOfSourceVars;
+		eqparser::_limit wayOfTargetFunction;
 };
 
 #endif

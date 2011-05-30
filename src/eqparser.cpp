@@ -13,7 +13,6 @@
 namespace eqparser {
 
 enum _type { none, num, arith_sign, eq_sign, x, end, space, min_max, approach };
-enum _arithsign { minus, plus, mul, _div };
 
 struct _token {
 	double num;

@@ -5,43 +5,46 @@
 
 #include "Simplex.h"
 #include "Out.h"
+// #include "user_data.h"
+// #include "Plane.h"
 
-void Simplex::Init() {
-	int i,j;	
+Plane* Simplex::generate_plane(struct user_data::_userdata* ud) {
+	int i, j, num_of_source_vars;
+	user_data::_system::iterator it;
+	eqparser::_vars::iterator eqit;
+	Plane *p;
 
-	old_plane = new Plane(numOfSourceVars);
-	new_plane = new Plane(numOfSourceVars);
+	numOfSourceVars = num_of_source_vars = ud->func.vars.size();
+	old_plane = new Plane(num_of_source_vars);
+	new_plane = p = new Plane(num_of_source_vars);
 
-	for (i = 0; i < numOfSourceVars; ++i) {
-		(*new_plane->basisVars)[0][i] = numOfSourceVars + i + 1;
-		(*new_plane->basisVars)[1][i] = freeMembersOfSystem[i];
+	for (i = 0, it = ud->system.begin(); it != ud->system.end(); it++, i++) {
+		(*p->basisVars)[0][i] = num_of_source_vars + i + 1;
+		(*p->basisVars)[1][i] = (*it)->rval;
 	}
 
-	for (i = 0; i <numOfSourceVars; i++)
-		new_plane->indexString[i] = -factorsOfTargetFunctionVars[i];
-	for (; i < numOfSourceVars * 2; i++)
-		new_plane->indexString[i] = 0;
+	for (i = 0, eqit = ud->func.vars.begin(); eqit != ud->func.vars.end(); eqit++, i++) {
+		p->indexString[i] = (*eqit).a * -1;
+		p->indexString[ud->func.vars.size() + i] = 0;
+	}
 
-	for  (i = 0; i < numOfSourceVars; ++i)
-	{
-		for (j = 0; j < numOfSourceVars; j++)
-		{
-			// TODO: Это можно сделать без копирования
-			(*new_plane->varsFactors)[i][j] = (*factorsOfSystemVars)[i][j];
-		 	if (freeMembersOfSystem[i] < 0)
-				(*new_plane->varsFactors)[i][j] *= -1;
+	for (i = 0, it = ud->system.begin(); it != ud->system.end(); it++, i++) {
+		for (j = 0, eqit = (*it)->vars.begin(); eqit != (*it)->vars.end(); eqit++, j++) {
+			(*p->varsFactors)[i][j] = (*eqit).a;
+			if ((*it)->sign == eqparser::ge)
+				(*p->varsFactors)[i][j] *= -1;
+			(*p->varsFactors)[i][(*it)->vars.size() + j] = j == i ? 1 : 0;
+			if ((*it)->sign == eqparser::ge && (*p->varsFactors)[i][(*it)->vars.size() + j] != 0)
+				(*p->varsFactors)[i][(*it)->vars.size() + j] *= -1;
 		}
-		for (; j < numOfSourceVars*2; j++)
-			(*new_plane->varsFactors)[i][j] = i + numOfSourceVars == j;
 	}
 
-	setIndexOfLeavingColumn(new_plane);
-	
-	for (i = 0; i < numOfSourceVars; ++i)
-		new_plane->thColumn[i] = (*new_plane->basisVars)[1][i] / (*new_plane->varsFactors)[i][new_plane->indexOfLeavingColumn];
-	
-	setIndexOfLeavingRow(new_plane);
-	setAllowingMember(new_plane);
+	setIndexOfLeavingColumn(p);
+	setThColumn(p);
+	setIndexOfLeavingRow(p);
+	setAllowingMember(p);
+
+	return p;
 }
 
 void Simplex::run()
@@ -49,8 +52,6 @@ void Simplex::run()
 	int i = 1;
 	Plane* t;
 	enum result r;
-
-	Init();
 
 	for (;;) {
 		if (good_solution == (r = checkPlane(new_plane))) {
@@ -90,7 +91,7 @@ bool Simplex::checkThColumn(Plane* p) {
 
 enum result Simplex::checkPlane(Plane* p) {
 	for (int i = 0; i < numOfSourceVars; ++i) {
-		if (wayOfTargetFunction) {
+		if (wayOfTargetFunction == eqparser::max) {
 			if (p->indexString[i] < 0) return bad_solution;
 		} else {
 			if (p->indexString[i] >= 0) return bad_solution;
@@ -121,13 +122,13 @@ void Simplex::dumpToTableTxt(Plane* p, unsigned int iteration, enum result r) {
 	static std::ofstream file("table.txt");
 	std::stringstream buf;
 
-	buf << "Задана целевая функция: f(x) = ";	
-	for (i = 0; i < numOfSourceVars; ++i)
-	{
-		if (factorsOfTargetFunctionVars[i] > 0 && i)
-			buf << " + ";
-		buf << factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
-	}
+//	buf << "Задана целевая функция: f(x) = ";	
+//	for (i = 0; i < numOfSourceVars; ++i)
+//	{
+//		if (factorsOfTargetFunctionVars[i] > 0 && i)
+//			buf << " + ";
+//		buf << factorsOfTargetFunctionVars[i] << "x" <<  i + 1;
+//	}
 
 	buf << "\n\n";
 	buf << iteration << "-й план \n\n";
