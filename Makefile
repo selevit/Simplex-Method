@@ -1,9 +1,4 @@
 default:
-	cd src/ && nmake
-test:
-	cd tests/ && call run-tests.bat
+	c++ -Wall -ggdb user_data.cpp simplex.cpp main.cpp -o Simplex
 clean:
-	cd src/ && nmake clean
-	cd tests/ && @for %%f in (*.out) do @del %%f >nul
-	cd tests/ && @for %%f in (*.table) do @del %%f >nul
-all: clean default test
+	rm Simplex table.txt
