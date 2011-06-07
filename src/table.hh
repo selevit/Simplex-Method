@@ -56,7 +56,6 @@ namespace table {
 
 	class table : public CommonData {
 	public:
-		table();
 		void init_matrix(unsigned int, unsigned int);
 
 		template <class T>
@@ -74,7 +73,7 @@ namespace table {
 		iterator<_row> names_row() { return iterator<_row>(this, 0); }
 		iterator<_row> rows_begin() { return iterator<_row>(this, 1); }
 		iterator<_row> rows_end() { return iterator<_row>(this, 1+amount[nbv]); }
-		iterator<_row> z_row() { return iterator<_row>(this, 1+amount[nbv]); }
+		iterator<_row> z_row() { return iterator<_row>(this, 1+amount[sv]); }
 		iterator<_column> names_column() { return iterator<_column>(this, 0); }
 		iterator<_column> begin(enum _coltype ct) { return iterator<_column>(this, block_start(ct)); }
 		iterator<_column> end(enum _coltype ct) { return iterator<_column>(this, block_end(ct)); }

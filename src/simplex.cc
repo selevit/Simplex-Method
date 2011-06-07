@@ -26,7 +26,7 @@ namespace simplex {
 		table::table *new_table, *old_table, *t;
 		table::table::iterator<table::_row> rit, rit1, rit2;
 		table::table::iterator<table::_column> cit;
-		cells::cell* c;
+		cells::cell **c, *c1;
 		lls out;
 
 		new_table = new table::table;
@@ -39,9 +39,13 @@ namespace simplex {
 				new_table->amount[table::sv]++;
 
 		columns = new_table->amount[table::nbv] + new_table->amount[table::sv];
+		new_table->amount[table::av] = 0;
 		for (sit = ud->system.begin(); sit != ud->system.end(); ++sit)
 			if ((*sit)->sign != eqparser::le)
+			{
 				columns++; // для каждой искусственной переменной
+				new_table->amount[table::av]++;
+			}
 		columns++; // для свободных членов
 
 		rows = new_table->amount[table::sv]; // ряд для каждого ограничения
@@ -76,25 +80,35 @@ namespace simplex {
 		// задать функцию (с -М по надобности) - тоже
 		// задать вертикальные начальные базисные переменные
 		for (rit = new_table->rows_begin(); rit != new_table->rows_end(); ++rit) {
-			if (0 != (c = new_table->get_av(rit)))
-				(*rit).add_sbv(c);
+			if (0 != (c1 = new_table->get_av(rit)))
+				(*rit).add_sbv(c1);
 			else // если у нас нет искусственной переменной используем слак
 				(*rit).add_sbv(new_table->get_sv(rit));
 		}
 
 		// посчитать z-row
+		// TODO: ЭТО ВСЁ ГОВНО ДОЛЖНО БЫТЬ СПРЯТАНО В TABLE!!!!
 		rit1 = new_table->z_row();
 		rit2 = new_table->names_row();
 		for (cit = new_table->begin(table::all); cit != new_table->end(table::all); ++cit) {
-			**new_table->get_cell(rit1, cit) = **new_table->get_cell(rit2, cit);
+			c = new_table->get_cell(rit1, cit);
+			if (*c == 0) {
+				if (new_table->amount[table::av] != 0)
+					*c = new cells::bigm;
+				else
+					*c = new cells::var;
+			}
+			**c = **new_table->get_cell(rit2, cit);
 			for (rit = new_table->rows_begin(); rit != new_table->rows_end(); ++rit) {
 				// cj - zj
-				**new_table->get_cell(rit1, cit) -= **new_table->get_cell(rit, cit);
+				**c -= **new_table->get_cell(rit, cit);
 			}
 		}
 
 		old_table = new table::table;
 		*old_table = *new_table;
+
+		return;
 
 		for (;;) {
 			// if (have_solution) break;

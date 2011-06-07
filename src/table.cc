@@ -83,7 +83,7 @@ namespace table {
 
 		for (cit = t->begin(nbv); cit != t->end(nbv); ++cit) {
 			c = cd->get_cell(row, (*cit).column);
-			if ((static_cast<cells::border<fraction::fraction>*>(*c))->var_index == v.b)
+			if (*c != 0 && (static_cast<cells::border<cells::var>*>(*c))->var_index == v.b)
 				break;
 		}
 		// этот цикл ДОЛЖЕН выходить брейком
@@ -108,9 +108,16 @@ namespace table {
 	void _row::add_av()
 	{
 		static unsigned int av_set = 0;
-		cells::cell** c = cd->get_cell(row, cd->block_start(av)+av_set);
-		if (*c == 0)
+		unsigned int column;
+		cells::cell **c, **name_c;
+
+		column = cd->block_start(av)+av_set;
+		c = cd->get_cell(row, column);
+		name_c = cd->get_cell(0, column);
+		if (*c == 0) {
 			*c = new cells::var;
+			*name_c = new cells::border<cells::bigm>('m', av_set+1);
+		}
 		**c = 1;
 		av_set++; // TODO: это уёбищно и надо сделать как-то по другому
 	}
@@ -123,9 +130,16 @@ namespace table {
 	void _row::add_sv(int factor)
 	{
 		static unsigned int sv_set = 0;
-		cells::cell** c = cd->get_cell(row, cd->block_start(sv)+sv_set);
-		if (*c == 0)
+		unsigned int column;
+		cells::cell **c, **name_c;
+
+		column = cd->block_start(sv)+sv_set;
+		c = cd->get_cell(row, column);
+		name_c = cd->get_cell(0, column);
+		if (*c == 0) { // это по идее всегда true
 			*c = new cells::var;
+			*name_c = new cells::border<cells::var>('s', sv_set+1);
+		}
 		**c = factor;
 		sv_set++;
 	}
@@ -158,18 +172,28 @@ namespace table {
 		return 0; // по идее до этого никогда не должно дойти
 	}
 
+	cells::cell** table::get_cell(iterator<_row>& rit, iterator<_column>& cit)
+	{
+		return CommonData::get_cell((*rit).row, (*cit).column);
+	}
+
 	void table::add_nbv(unsigned int index)
 	{
 		// это добавка небазисной переменной в горизонтальный ряд с именами
 		static unsigned int i = 0; // TODO: тоже уёбищно
 
-		*m->at(0, 1+i) = new cells::border<fraction::fraction>('x', index);
+		*m->at(0, 1+i) = new cells::border<cells::var>('x', index);
 		i++; // если у нас сбоил цикл в simplex.cpp мы вылетаем прямо на соседний слак
 	}
 
 	void table::init_matrix(unsigned int rows, unsigned int columns)
 	{
 		m = new matrix<cells::cell*>(rows+1, columns+1); // +1 для имён (cells::border)
+	}
+
+	table& table::operator=(table& t)
+	{
+		return *this;
 	}
 
 } /* namespace table */
