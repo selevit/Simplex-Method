@@ -20,7 +20,7 @@ void simplex::init()
 	for (i = 0; i < num_l; i++) {
 		for (j = 0; j < num_v; j++) 
 			sv[i][j] = system[i][j];
-		for (; j < num_l * 2; j++)
+		for (; j < num_v * 2; j++)
 			if (i + num_v == j)
 				if (way)
 					sv[i][j] = 1;
@@ -41,6 +41,7 @@ void simplex::init()
 			istr[i] = function[i] * -1;
 		else
 			istr[i] = 0;
+	i_lcol = 0;
 	for (i = 0; i < num_v * 2 - 1; i++) {
 		if (istr[i] < 0)
 			if (fabs(istr[i + 1]) > fabs(istr[i]))
@@ -49,6 +50,7 @@ void simplex::init()
 	th = new double [num_l];
 	for (i = 0; i < num_l; i++)
 		th[i] = bv[i][1] / sv[i][i_lcol];
+	i_lrow = 0;
 	for (i = 0; i < num_l - 1; i++)
 		if (th[i] > th[i + 1])
 			i_lrow = i + 1;
@@ -65,33 +67,36 @@ bool simplex::plane_is_valid()
 				result = false;
 				break;
 			}
+	if (!way)
+		for (i = 0; i < num_v * 2; i++)
+			if (istr[i] >= 0) {
+				result = false;
+				break;
+			}
+
 	return result;
 }
 bool simplex::function_is_undefined()
 {
 	int i;
-	bool result = true;
 	for (i = 0; i < num_l; i++)
 		if (th[i] < 0) {
-			result = false;
-			break;
+			return false;
 		}
-	return result;
+	return true;
 }
 void simplex::gen_plane()
 {
 	int i, j, it_num = 0;
 	double A, B;
-	while (!plane_is_valid()) { 
-	// && !function_is_undefined()) {
-	// TODO: нужно сделать проверку на валидность функции.
+	while (!plane_is_valid() && function_is_undefined()) {
 	A = bv[i_lrow][1];
 	B = istr[i_lcol];
 	func -= A * B / alm;
 	double *tmp_bv = new double [num_l];
 	bv [i_lrow][0] = i_lcol;
 	A = bv[i_lrow][1];
-	for (i = 0; i < num_v; i++) {
+	for (i = 0; i < num_l; i++) {
 		B = sv[i][i_lcol];
 		tmp_bv[i] = bv[i_lrow][1];
 		if (i != i_lrow)
@@ -99,7 +104,7 @@ void simplex::gen_plane()
 		else
 			tmp_bv[i] /= alm;
 	}
-	for (i = 0; i < num_v; i++)
+	for (i = 0; i < num_l; i++)
 		bv[i][1] = tmp_bv[i];
 	double *tmp_istr = istr;
 	B = istr[i_lcol];
@@ -108,8 +113,8 @@ void simplex::gen_plane()
 		tmp_istr[i] = istr[i] - A * B / alm;
 	}
 	istr = tmp_istr;
-	double **tmp_sv = new double *[num_v];
-	for (i = 0; i < num_v; i++)
+	double **tmp_sv = new double *[num_l];
+	for (i = 0; i < num_l; i++)
 		tmp_sv[i] = new double [num_v * 2];
 	for (i = 0; i < num_l; i++)
 		for (j = 0; j < num_v * 2; j++) {
@@ -134,11 +139,15 @@ void simplex::gen_plane()
 		print_result_to_file(it_num);
 	}
 
-	cout << "\nf(x) = " << func << "\n" << endl;
-	for (i = 0; i < num_v; i++) {
-		cout << "x" << bv[i][0] + 1 << " = " << bv[i][1] << endl;
+	if (!function_is_undefined())
+			cout << "\nЦелевая фукнция не ограничена, данная задача решений не имеет\n" << endl;
+	else {
+		cout << "\nf(x) = " << func << "\n" << endl;
+		for (i = 0; i < num_l; i++) {
+			cout << "x" << bv[i][0] + 1 << " = " << bv[i][1] << endl;
+		}
+		cout << "\nВсе вычисления были записаны в файл table.txt\n" << endl;
 	}
-	cout << "\nВсе вычисления были записаны в файл table.txt\n" << endl;
 }
 void simplex::print_result_to_file(int it_num) 
 {
@@ -222,7 +231,7 @@ void simplex::print_result_to_file(int it_num)
 		table << istr[i] << "\t";
 	table << "\n";
 	if (plane_is_valid()) {
-		if (plane_is_valid())
+		if (plane_is_valid() && function_is_undefined())
 			table << "\nДанный план является оптимальным и не требует улучшения. Решение найдено." << endl;
 			std::ofstream outfile ("table.txt");
 			outfile << table.str();

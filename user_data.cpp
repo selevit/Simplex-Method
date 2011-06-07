@@ -9,9 +9,9 @@ using std::cin;
 using std::endl;
 using std::string;
 
-void error(int errno)
+void error(int err_no)
 {
-	switch(errno) {
+	switch(err_no) {
 		case 0:
 			cout << "\nВы ввели некорректное значение.\n" << endl;
 			break;

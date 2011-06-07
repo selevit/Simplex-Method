@@ -3,5 +3,7 @@ table.txt
 *~
 tests/test*.table
 tests/test*.out
+win32
+win32/*
 *.obj
 *.exe
