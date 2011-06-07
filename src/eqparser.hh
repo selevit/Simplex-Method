@@ -1,5 +1,5 @@
-#ifndef _EQPARSER_H_
-#define _EQPARSER_H_
+#ifndef _EQPARSER_HH_
+#define _EQPARSER_HH_
 
 #include <list>
 #include <string>
@@ -25,4 +25,4 @@ namespace eqparser {
 	void recreate_ineq(struct _eq*, std::string*, enum _eqtype);
 }
 
-#endif /* _EQPARSER_H_ */
+#endif /* _EQPARSER_HH_ */

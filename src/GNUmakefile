@@ -1,5 +1,5 @@
 default:
-	c++ -Wall -Wextra -ggdb main.cpp user_data.cpp Table.cpp simplex.cpp Matrix.cpp Out.cpp eqparser.cpp -o Simplex
+	c++ -Wall -Wextra -ggdb -o Simplex *.cc
 clean:
 	rm -f Simplex
 

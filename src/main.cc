@@ -9,18 +9,14 @@
  * систем группы ВТ-3-1 В учебный период
  */ 
 
-#include "user_data.h"
-#include "Simplex.h"
+#include "user_data.hh"
+#include "simplex.hh"
 
 int main()
 {
 	struct user_data::_userdata ud;
 	user_data::get_data_from_user(&ud);
-	
-
-	Simplex s;
-	s.generate_plane(&ud);
-	s.run();
+	simplex::run(&ud);
 
 	return 0;
 }

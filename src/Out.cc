@@ -8,7 +8,7 @@
 # include <unistd.h>
 #endif
 
-#include "Out.h"
+#include "Out.hh"
 
 Out& Out::operator<<(int d)
 {

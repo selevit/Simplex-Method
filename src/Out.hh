@@ -1,5 +1,5 @@
-#ifndef _OUT_H_
-#define _OUT_H_
+#ifndef _OUT_HH_
+#define _OUT_HH_
 
 #include <ostream>
 
